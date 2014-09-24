@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C22BCE1719D335DF00F97C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE1619D335DF00F97C79 /* AppDelegate.swift */; };
+		C22BCE1919D335DF00F97C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE1819D335DF00F97C79 /* ViewController.swift */; };
+		C22BCE1C19D335DF00F97C79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1A19D335DF00F97C79 /* Main.storyboard */; };
+		C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1D19D335DF00F97C79 /* Images.xcassets */; };
+		C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */; };
+		C22BCE2D19D335DF00F97C79 /* TAStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C22BCE2719D335DF00F97C79 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C22BCE0919D335DF00F97C79 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C22BCE1019D335DF00F97C79;
+			remoteInfo = TAStackView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C22BCE1119D335DF00F97C79 /* TAStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22BCE1519D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C22BCE1619D335DF00F97C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C22BCE1819D335DF00F97C79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C22BCE1B19D335DF00F97C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C22BCE1D19D335DF00F97C79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C22BCE2019D335DF00F97C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C22BCE2B19D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAStackViewTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C22BCE0E19D335DF00F97C79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C22BCE2319D335DF00F97C79 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C22BCE0819D335DF00F97C79 = {
+			isa = PBXGroup;
+			children = (
+				C22BCE1319D335DF00F97C79 /* TAStackView */,
+				C22BCE2919D335DF00F97C79 /* TAStackViewTests */,
+				C22BCE1219D335DF00F97C79 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C22BCE1219D335DF00F97C79 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C22BCE1119D335DF00F97C79 /* TAStackView.app */,
+				C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C22BCE1319D335DF00F97C79 /* TAStackView */ = {
+			isa = PBXGroup;
+			children = (
+				C22BCE1619D335DF00F97C79 /* AppDelegate.swift */,
+				C22BCE1819D335DF00F97C79 /* ViewController.swift */,
+				C22BCE1A19D335DF00F97C79 /* Main.storyboard */,
+				C22BCE1D19D335DF00F97C79 /* Images.xcassets */,
+				C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */,
+				C22BCE1419D335DF00F97C79 /* Supporting Files */,
+			);
+			path = TAStackView;
+			sourceTree = "<group>";
+		};
+		C22BCE1419D335DF00F97C79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C22BCE1519D335DF00F97C79 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C22BCE2919D335DF00F97C79 /* TAStackViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */,
+				C22BCE2A19D335DF00F97C79 /* Supporting Files */,
+			);
+			path = TAStackViewTests;
+			sourceTree = "<group>";
+		};
+		C22BCE2A19D335DF00F97C79 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C22BCE2B19D335DF00F97C79 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C22BCE1019D335DF00F97C79 /* TAStackView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C22BCE3019D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackView" */;
+			buildPhases = (
+				C22BCE0D19D335DF00F97C79 /* Sources */,
+				C22BCE0E19D335DF00F97C79 /* Frameworks */,
+				C22BCE0F19D335DF00F97C79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TAStackView;
+			productName = TAStackView;
+			productReference = C22BCE1119D335DF00F97C79 /* TAStackView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C22BCE2519D335DF00F97C79 /* TAStackViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C22BCE3319D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */;
+			buildPhases = (
+				C22BCE2219D335DF00F97C79 /* Sources */,
+				C22BCE2319D335DF00F97C79 /* Frameworks */,
+				C22BCE2419D335DF00F97C79 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C22BCE2819D335DF00F97C79 /* PBXTargetDependency */,
+			);
+			name = TAStackViewTests;
+			productName = TAStackViewTests;
+			productReference = C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C22BCE0919D335DF00F97C79 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Tom Abraham";
+				TargetAttributes = {
+					C22BCE1019D335DF00F97C79 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					C22BCE2519D335DF00F97C79 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = C22BCE1019D335DF00F97C79;
+					};
+				};
+			};
+			buildConfigurationList = C22BCE0C19D335DF00F97C79 /* Build configuration list for PBXProject "TAStackView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C22BCE0819D335DF00F97C79;
+			productRefGroup = C22BCE1219D335DF00F97C79 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C22BCE1019D335DF00F97C79 /* TAStackView */,
+				C22BCE2519D335DF00F97C79 /* TAStackViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C22BCE0F19D335DF00F97C79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C22BCE1C19D335DF00F97C79 /* Main.storyboard in Resources */,
+				C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */,
+				C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C22BCE2419D335DF00F97C79 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C22BCE0D19D335DF00F97C79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C22BCE1919D335DF00F97C79 /* ViewController.swift in Sources */,
+				C22BCE1719D335DF00F97C79 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C22BCE2219D335DF00F97C79 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C22BCE2D19D335DF00F97C79 /* TAStackViewTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C22BCE2819D335DF00F97C79 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C22BCE1019D335DF00F97C79 /* TAStackView */;
+			targetProxy = C22BCE2719D335DF00F97C79 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C22BCE1A19D335DF00F97C79 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C22BCE1B19D335DF00F97C79 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C22BCE2019D335DF00F97C79 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C22BCE2E19D335DF00F97C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C22BCE2F19D335DF00F97C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C22BCE3119D335DF00F97C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TAStackView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C22BCE3219D335DF00F97C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = TAStackView/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C22BCE3419D335DF00F97C79 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TAStackViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAStackView.app/TAStackView";
+			};
+			name = Debug;
+		};
+		C22BCE3519D335DF00F97C79 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = TAStackViewTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAStackView.app/TAStackView";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C22BCE0C19D335DF00F97C79 /* Build configuration list for PBXProject "TAStackView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22BCE2E19D335DF00F97C79 /* Debug */,
+				C22BCE2F19D335DF00F97C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C22BCE3019D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22BCE3119D335DF00F97C79 /* Debug */,
+				C22BCE3219D335DF00F97C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		C22BCE3319D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C22BCE3419D335DF00F97C79 /* Debug */,
+				C22BCE3519D335DF00F97C79 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C22BCE0919D335DF00F97C79 /* Project object */;
+}
