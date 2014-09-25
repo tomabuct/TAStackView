@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C22BCE1719D335DF00F97C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE1619D335DF00F97C79 /* AppDelegate.swift */; };
-		C22BCE1919D335DF00F97C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE1819D335DF00F97C79 /* ViewController.swift */; };
-		C22BCE1C19D335DF00F97C79 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1A19D335DF00F97C79 /* Main.storyboard */; };
 		C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1D19D335DF00F97C79 /* Images.xcassets */; };
 		C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */; };
 		C22BCE2D19D335DF00F97C79 /* TAStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */; };
+		C22BCE3C19D3363400F97C79 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3619D3363400F97C79 /* StackContainerView.swift */; };
+		C22BCE3D19D3363400F97C79 /* StackGravityAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */; };
+		C22BCE3E19D3363400F97C79 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3819D3363400F97C79 /* StackView.swift */; };
+		C22BCE3F19D3363400F97C79 /* StackViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3919D3363400F97C79 /* StackViewUtils.swift */; };
+		C22BCE4019D3363400F97C79 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3A19D3363400F97C79 /* View.swift */; };
+		C22BCE4119D3363400F97C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3B19D3363400F97C79 /* ViewController.swift */; };
+		C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE4219D3364A00F97C79 /* AppDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,14 +32,18 @@
 /* Begin PBXFileReference section */
 		C22BCE1119D335DF00F97C79 /* TAStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22BCE1519D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C22BCE1619D335DF00F97C79 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C22BCE1819D335DF00F97C79 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C22BCE1B19D335DF00F97C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C22BCE1D19D335DF00F97C79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		C22BCE2019D335DF00F97C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C22BCE2B19D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAStackViewTests.swift; sourceTree = "<group>"; };
+		C22BCE3619D3363400F97C79 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackGravityAreaView.swift; sourceTree = "<group>"; };
+		C22BCE3819D3363400F97C79 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		C22BCE3919D3363400F97C79 /* StackViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewUtils.swift; sourceTree = "<group>"; };
+		C22BCE3A19D3363400F97C79 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		C22BCE3B19D3363400F97C79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C22BCE4219D3364A00F97C79 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,9 +85,13 @@
 		C22BCE1319D335DF00F97C79 /* TAStackView */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE1619D335DF00F97C79 /* AppDelegate.swift */,
-				C22BCE1819D335DF00F97C79 /* ViewController.swift */,
-				C22BCE1A19D335DF00F97C79 /* Main.storyboard */,
+				C22BCE4219D3364A00F97C79 /* AppDelegate.swift */,
+				C22BCE3B19D3363400F97C79 /* ViewController.swift */,
+				C22BCE3A19D3363400F97C79 /* View.swift */,
+				C22BCE3619D3363400F97C79 /* StackContainerView.swift */,
+				C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */,
+				C22BCE3819D3363400F97C79 /* StackView.swift */,
+				C22BCE3919D3363400F97C79 /* StackViewUtils.swift */,
 				C22BCE1D19D335DF00F97C79 /* Images.xcassets */,
 				C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */,
 				C22BCE1419D335DF00F97C79 /* Supporting Files */,
@@ -192,7 +204,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22BCE1C19D335DF00F97C79 /* Main.storyboard in Resources */,
 				C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */,
 				C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */,
 			);
@@ -212,8 +223,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22BCE1919D335DF00F97C79 /* ViewController.swift in Sources */,
-				C22BCE1719D335DF00F97C79 /* AppDelegate.swift in Sources */,
+				C22BCE4119D3363400F97C79 /* ViewController.swift in Sources */,
+				C22BCE3C19D3363400F97C79 /* StackContainerView.swift in Sources */,
+				C22BCE3F19D3363400F97C79 /* StackViewUtils.swift in Sources */,
+				C22BCE4019D3363400F97C79 /* View.swift in Sources */,
+				C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */,
+				C22BCE3D19D3363400F97C79 /* StackGravityAreaView.swift in Sources */,
+				C22BCE3E19D3363400F97C79 /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,14 +252,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C22BCE1A19D335DF00F97C79 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C22BCE1B19D335DF00F97C79 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -338,9 +346,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TAStackView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -348,6 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = TAStackView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
