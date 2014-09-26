@@ -41,7 +41,7 @@ class StackView : UIView {
     didSet { containerView.alignment = alignment }
   }
 
-  var orientation : YLUserInterfaceLayoutOrientation = DefaultOrientation {
+  var orientation : TAUserInterfaceLayoutOrientation = DefaultOrientation {
     didSet {
       if (oldValue == orientation) { return }
 

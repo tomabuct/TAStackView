@@ -67,7 +67,7 @@ class View: UIView {
     case .Left: alignment = .CenterX
     case .CenterX: alignment = .Right
     case .Right: alignment = .Left
-    default: alignment = stackView.orientation == YLUserInterfaceLayoutOrientation.Vertical ? .CenterY : .CenterX
+    default: alignment = stackView.orientation == TAUserInterfaceLayoutOrientation.Vertical ? .CenterY : .CenterX
     }
 
     stackView.alignment = alignment
@@ -78,7 +78,7 @@ class View: UIView {
   func switchOrientation() {
     layoutIfNeeded();
 
-    var orientation = YLUserInterfaceLayoutOrientation.Horizontal
+    var orientation = TAUserInterfaceLayoutOrientation.Horizontal
 
     switch stackView.orientation {
     case .Horizontal: orientation = .Vertical

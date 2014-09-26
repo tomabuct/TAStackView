@@ -9,6 +9,13 @@
 import UIKit
 
 class StackSpacerView : UIView {
+  let huggingConstraint : NSLayoutConstraint!
+  let spacingConstraint : NSLayoutConstraint!
+  
+  required init(coder aDecoder: NSCoder) {
+    fatalError("NSCoder not supported")
+  }
+  
   override convenience init() {
     self.init(frame: CGRectNull)
   }
@@ -16,34 +23,47 @@ class StackSpacerView : UIView {
   override init(frame: CGRect) {
     super.init(frame: frame)
     
+    // always invisible
+    hidden = true
+    
+    // always used in manual Auto Layout contexts
     setTranslatesAutoresizingMaskIntoConstraints(false)
+
+    // layout
+    let char = orientation.toCharacter()
+    let metrics = [ "spacing":  spacing, "sP": spacingPriority ]._bridgeToObjectiveC()
+    let views = [ "self": self ]._bridgeToObjectiveC()
+
+    huggingConstraint = (NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(spacing@sP)]",
+      options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint]).first!
+    spacingConstraint = (NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(>=spacing)]",
+      options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint]).first!
+    
+    addConstraint(huggingConstraint)
+    addConstraint(spacingConstraint)
   }
   
-  required init(coder aDecoder: NSCoder) {
-    fatalError("NSCoder not supported")
-  }
+// MARK: Configuration
   
-  var orientation : YLUserInterfaceLayoutOrientation = .Horizontal {
+  var orientation : TAUserInterfaceLayoutOrientation = .Horizontal {
     didSet { setNeedsUpdateConstraints() }
   };
 
-  var spacing : Float = 8.0 {
+  var spacing : Float = DefaultSpacing {
     didSet { setNeedsUpdateConstraints() }
   }
   
-  var spacingPriority : UILayoutPriority = 250 { //UILayoutPriorityDefaultLow {
+  var spacingPriority : UILayoutPriority = 250 { // UILayoutPriorityDefaultLow
     didSet { setNeedsUpdateConstraints() }
   }
+  
+// MARK: Update layout
   
   override func updateConstraints() {
-    removeConstraints(constraints())
+    huggingConstraint.constant = CGFloat(spacing)
+    huggingConstraint.priority = spacingPriority
     
-    let char = orientation.toCharacter()
-    let vfls = [ "\(char):[self(spacing@sP)]", "\(char):[self(>=spacing)]" ];
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormats(vfls,
-      options: NSLayoutFormatOptions(0),
-      metrics: [ "spacing":  spacing, "sP": spacingPriority ],
-      views: [ "self": self ]))
+    spacingConstraint.constant = CGFloat(spacing)
     
     super.updateConstraints()
   }

@@ -12,31 +12,7 @@ typealias StackViewVisibilityPriority = Float
 
 let DefaultSpacing : Float = 8.0
 let DefaultAlignment : NSLayoutAttribute = .CenterY
-let DefaultOrientation : YLUserInterfaceLayoutOrientation = .Horizontal
-
-var kVisibilityPriorityInStackViewKey = "kVisibilityPriorityInStackViewKey"
-var kStackViewGravityKey = "kStackViewGravityKey"
-
-extension UIView {
-  var visibilityPriorityInStackView : StackViewVisibilityPriority {
-    get {
-      return objc_getAssociatedObject(self, &kVisibilityPriorityInStackViewKey) as Float
-    }
-    set {
-      objc_setAssociatedObject(self, &kVisibilityPriorityInStackViewKey, newValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
-  }
-
-//  var gravityArea : StackViewGravity {
-//    get {
-//      return StackViewGravity(rawValue: objc_getAssociatedObject(self, &kStackViewGravityKey) as Int)!
-//    }
-//
-//    set {
-//      objc_setAssociatedObject(self, &kStackViewGravityKey, newValue.rawValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-//    }
-//  }
-}
+let DefaultOrientation : TAUserInterfaceLayoutOrientation = .Horizontal
 
 extension NSLayoutConstraint {
   class func constraintsWithVisualFormats(
@@ -56,7 +32,7 @@ extension NSLayoutConstraint {
   }
 }
 
-enum YLUserInterfaceLayoutOrientation {
+enum TAUserInterfaceLayoutOrientation {
   case Horizontal
   case Vertical
 
@@ -64,7 +40,7 @@ enum YLUserInterfaceLayoutOrientation {
     return self == .Horizontal ? "H" : "V"
   }
 
-  func other() -> YLUserInterfaceLayoutOrientation {
+  func other() -> TAUserInterfaceLayoutOrientation {
     return self == .Horizontal ? .Vertical : .Horizontal;
   }
 
