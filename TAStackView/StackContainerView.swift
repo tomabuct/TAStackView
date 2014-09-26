@@ -10,7 +10,7 @@ import UIKit
 
 class StackContainerView : UIView, StackGravityAreaViewDelegate {
   private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
-  private var _gravityAreaForView = Dictionary<UnsafePointer<Void>, StackViewGravityArea>()
+  private var _gravityAreaContainingView = Dictionary<UnsafePointer<Void>, StackViewGravityArea>()
 
   required init(coder aDecoder: NSCoder) {
     fatalError("NSCoder not supported")
@@ -103,6 +103,8 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
   
   func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
     gravityAreaViewForGravity(gravityAreaContainingView(view)).setVisibilityPriority(visibilityPriority, forView: view)
+    
+    setNeedsUpdateConstraints()
   }
   
   func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
@@ -116,7 +118,7 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
   }
   
   func gravityAreaContainingView(view : UIView) -> StackViewGravityArea {
-    return _gravityAreaForView[unsafeAddressOf(view)]!;
+    return _gravityAreaContainingView[unsafeAddressOf(view)]!;
   }
   
   func customSpacingAfterView(view : UIView) -> Float? {
@@ -128,7 +130,7 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
   }
   
   func addView(var view : UIView, inGravity gravity : StackViewGravityArea) {
-    _gravityAreaForView[unsafeAddressOf(view)] = gravity
+    _gravityAreaContainingView[unsafeAddressOf(view)] = gravity
     gravityAreaViewForGravity(gravity).addView(view)
     
     setNeedsUpdateConstraints()
@@ -162,17 +164,17 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
       if (!head.isEmpty && !center.isEmpty && !tail.isEmpty) {       // 111
         vfls += [ "\(char):|[head][headCenterSpacer][center][centerTailSpacer][tail]|" ]
       } else if (!head.isEmpty && !center.isEmpty && tail.isEmpty) { // 110
-        vfls += [ "\(char):|[head][headCenterSpacer][center]|" ]
+        vfls += [ "\(char):|[head][headCenterSpacer][center][centerTailSpacer]|" ]
       } else if (!head.isEmpty && center.isEmpty && !tail.isEmpty) { // 101
         vfls += [ "\(char):|[head][headTailSpacer][tail]|" ]
       } else if (!head.isEmpty && center.isEmpty && tail.isEmpty) {  // 100
-        vfls += [ "\(char):|[head]|" ]
+        vfls += [ "\(char):|[head][headTailSpacer]|" ]
       } else if (head.isEmpty && !center.isEmpty && !tail.isEmpty) { // 011
         vfls += [ "\(char):|[center][centerTailSpacer][tail]|" ]
       } else if (head.isEmpty && !center.isEmpty && tail.isEmpty) {  // 010
-        vfls += [ "\(char):|[center]|" ]
+        vfls += [ "\(char):|[center][centerTailSpacer]|" ]
       } else if (head.isEmpty && center.isEmpty && !tail.isEmpty) {  // 001
-        vfls += [ "\(char):|[tail]|" ]
+        vfls += [ "\(char):|[headTailSpacer][tail]|" ]
       } else if (!head.isEmpty && !center.isEmpty && !tail.isEmpty) { // 000
         // TODO
       }
@@ -202,17 +204,9 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
     }
     
     func _updateInterGravityAreaSpacingConstraints() {
-      if (!head.isEmpty && !center.isEmpty) {
-        headTailSpacer.spacing = spacingAfterView(head.views.last!)
-      }
-      
-      if (!center.isEmpty && !tail.isEmpty) {
-        centerTailSpacer.spacing = spacingAfterView(center.views.last!)
-      }
-      
-      if (!head.isEmpty && center.isEmpty && !tail.isEmpty) {
-        headTailSpacer.spacing = spacingAfterView(head.views.last!)
-      }
+      headCenterSpacer.spacing = !head.isEmpty && !center.isEmpty ? spacingAfterView(head.viewsInPlay.last!) : 0
+      centerTailSpacer.spacing = !center.isEmpty && !tail.isEmpty ? spacingAfterView(center.viewsInPlay.last!) : 0
+      headTailSpacer.spacing = !head.isEmpty && center.isEmpty && !tail.isEmpty ? spacingAfterView(head.viewsInPlay.last!) : 0
       
       let hP = huggingPriorityForAxis(axis)
       gravityAreaSpacerViewsArray.map({ $0.spacingPriority = hP })

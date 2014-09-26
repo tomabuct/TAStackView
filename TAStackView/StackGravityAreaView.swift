@@ -19,7 +19,7 @@ class StackGravityAreaView : UIView {
   
   weak var delegate : StackGravityAreaViewDelegate?
   
-  var isEmpty : Bool { return views.isEmpty }
+  var isEmpty : Bool { return viewsInPlay.isEmpty }
 
   var hasEqualSpacing : Bool = false {
     didSet { setNeedsUpdateConstraints() }
@@ -72,15 +72,13 @@ class StackGravityAreaView : UIView {
     return 250//UILayoutPriorityDefaultLow
   }
 
-  func _viewsInPlay() -> [UIView] {
-    return views.filter({ $0.visibilityPriorityInStackView == 1000 })
-  }
+  var viewsInPlay : [UIView] { return views.filter({ $0.visibilityPriorityInStackView == 1000 }) }
 
   override func updateConstraints() {
     hidden = views.isEmpty
 
     func _mainConstraints() -> [NSLayoutConstraint] {
-      let views = _viewsInPlay()
+      let views = viewsInPlay
       
       let otherAxis = orientation.other().toAxis();
       let metrics = [ "Hp_other": huggingPriorityForAxis(otherAxis) ]
@@ -114,7 +112,7 @@ class StackGravityAreaView : UIView {
     }
 
     func _alignmentConstraints() -> [NSLayoutConstraint] {
-      let views = _viewsInPlay()
+      let views = viewsInPlay
 
       return views.map({ (view : UIView) -> NSLayoutConstraint in
         NSLayoutConstraint(

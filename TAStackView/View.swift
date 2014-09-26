@@ -12,6 +12,8 @@ private let kDuration = 0.2
 
 class View: UIView {
   let stackView = StackView();
+  
+  var doubleTapCount = 0
 
   required init(coder aDecoder: NSCoder) {
     fatalError("NSCoding not supported")
@@ -27,10 +29,11 @@ class View: UIView {
     stackView.layer.borderWidth = 1.0
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Leading) }
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Center) }
-    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
+//    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
 
-    stackView.frame = bounds
-    stackView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | .FlexibleWidth
+//    stackView.frame = bounds
+    stackView.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | .FlexibleBottomMargin
+    stackView.setTranslatesAutoresizingMaskIntoConstraints(true)
     addSubview(stackView);
 
     _installConstraints()
@@ -91,8 +94,8 @@ class View: UIView {
     let views = [ "stackView": stackView ]
 
     stackView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(10)-[stackView]-(10)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[stackView]-(10)-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(10)-[stackView]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[stackView]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
   }
 
   func _tappedView(tapGR : UITapGestureRecognizer) {
@@ -107,7 +110,9 @@ class View: UIView {
   func _doubleTappedView(tapGR : UITapGestureRecognizer) {
     layoutIfNeeded()
 
-    stackView.addView(crazyRandomView(), inGravity: .Leading)
+    stackView.addView(crazyRandomView(), inGravity: doubleTapCount % 3 == 0 ? .Leading : (doubleTapCount % 3 == 1 ? .Center : .Trailing))
+    
+    doubleTapCount++
 
     UIView.animateWithDuration(kDuration, animations: { self.layoutIfNeeded() })
   }
