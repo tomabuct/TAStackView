@@ -93,8 +93,8 @@ class StackContainerView : UIView, StackGravityAreaViewDelegate {
     }
   }
 
-  func compressionResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
-    return 1000//UILayoutPriorityDefaultHigh
+  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return 999//UILayoutPriorityDefaultHigh
   }
 
   func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {

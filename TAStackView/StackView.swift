@@ -73,21 +73,35 @@ class StackView : UIView {
   func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
     return containerView.visibilityPriorityForView(view)
   }
+  
+  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return containerView.clippingResistancePriorityForAxis(axis)
+  }
+  
+  func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return containerView.huggingPriorityForAxis(axis)
+  }
 
   override func updateConstraints() {
     removeConstraints(constraints())
 
     let views = [ "containerView" : containerView ]._bridgeToObjectiveC()
     let metrics = [
-      "l" : edgeInsets.left,
-      "r" : edgeInsets.right,
-      "t" : edgeInsets.top,
-      "b" : edgeInsets.bottom
-      ]._bridgeToObjectiveC()
+      "l": edgeInsets.left,
+      "t": edgeInsets.top,
+      
+      "b": edgeInsets.bottom,
+      "CRp_v": clippingResistancePriorityForAxis(UILayoutConstraintAxis.Vertical),
+      "Hp_v": huggingPriorityForAxis(.Vertical),
+      
+      "r": edgeInsets.right,
+      "CRp_h": clippingResistancePriorityForAxis(.Horizontal),
+      "Hp_h": huggingPriorityForAxis(.Horizontal)
+    ]
 
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(l)-[containerView]-(r)-|",
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(l)-[containerView]-(r@CRp_h,<=r)-|",
       options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint])
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(t)-[containerView]-(b)-|",
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(t)-[containerView]-(b@CRp_v,<=b)-|",
       options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint])
 
     super.updateConstraints()

@@ -81,16 +81,9 @@ class StackGravityAreaView : UIView {
 
     func _mainConstraints() -> [NSLayoutConstraint] {
       let views = _viewsInPlay()
-
-      let axis = orientation.toAxis()
+      
       let otherAxis = orientation.other().toAxis();
-
-      let metrics = [
-        "CRp": compressionResistancePriorityForAxis(axis),
-        "CRp_other": compressionResistancePriorityForAxis(otherAxis),
-        "Hp": huggingPriorityForAxis(axis),
-        "Hp_other": huggingPriorityForAxis(otherAxis)
-      ]
+      let metrics = [ "Hp_other": huggingPriorityForAxis(otherAxis) ]
 
       let char = orientation.toCharacter()
       let otherChar = orientation.other().toCharacter()
@@ -113,7 +106,7 @@ class StackGravityAreaView : UIView {
         }
 
         // VFL for otherAxis
-        vfls += [ "\(otherChar):|-(>=0)-[view]", "\(otherChar):[view]-(>=0)-|" ]
+        vfls += [ "\(otherChar):|-(>=0,0@Hp_other)-[view]", "\(otherChar):[view]-(>=0,0@Hp_other)-|" ]
 
         cs += NSLayoutConstraint.constraintsWithVisualFormats(vfls, options: NSLayoutFormatOptions(0), metrics: metrics, views: map)
       }
@@ -143,18 +136,24 @@ class StackGravityAreaView : UIView {
         spacers[i].orientation = orientation
       }
     }
-
-    for (i, view) in enumerate(views) {
-      let hidden = view.visibilityPriorityInStackView != 1000
+    
+    func _updateViewVisibility() {
+      for (i, view) in enumerate(views) {
+        let hidden = view.visibilityPriorityInStackView != 1000
+        
+        view.hidden = hidden
+        spacers[i].hidden = hidden
+      }
       
-      view.hidden = hidden
-      spacers[i].hidden = hidden
+      // last spacer isn't used
+      spacers.last?.hidden = true
     }
 
     self.removeConstraints(constraints())
     self.addConstraints(_mainConstraints())
     self.addConstraints(_alignmentConstraints())
     _updateInterViewSpacingConstraints()
+    _updateViewVisibility()
     
     super.updateConstraints()
   }

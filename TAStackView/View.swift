@@ -29,6 +29,8 @@ class View: UIView {
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Center) }
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
 
+    stackView.frame = bounds
+    stackView.autoresizingMask = UIViewAutoresizing.FlexibleHeight | .FlexibleWidth
     addSubview(stackView);
 
     _installConstraints()
