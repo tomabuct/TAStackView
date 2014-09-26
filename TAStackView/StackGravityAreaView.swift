@@ -8,10 +8,18 @@
 
 import UIKit
 
+@objc protocol StackGravityAreaViewDelegate {
+  func stackGravityAreaView(gravityAreaView: StackGravityAreaView, spacingAfterView: UIView) -> Float;
+}
+
 class StackGravityAreaView : UIView {
   private(set) var views : [UIView] = []
 
-  private(set) var spacers : [UIView] = []
+  private(set) var spacers : [StackSpacerView] = []
+  
+  weak var delegate : StackGravityAreaViewDelegate?
+  
+  var isEmpty : Bool { return views.isEmpty }
 
   var hasEqualSpacing : Bool = false {
     didSet { setNeedsUpdateConstraints() }
@@ -46,7 +54,7 @@ class StackGravityAreaView : UIView {
     view.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(view);
 
-    let spacer = UIView(frame: CGRectZero)
+    let spacer = StackSpacerView(frame: CGRectZero)
     spacer.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(spacer)
     spacers += [ spacer ]
@@ -95,17 +103,17 @@ class StackGravityAreaView : UIView {
         // VFL for axis
         if (i == 0) {
           vfls += [ "\(char):|[view]" ];
-        } else {
-          map["previousView"] = views[i - 1];
-          vfls += [ hasEqualSpacing ? "\(char):[previousView][spacer][view]" : "\(char):[previousView][view]" ];
         }
 
         if (i == views.count - 1) {
-          vfls += [ "\(char):[view]-(>=0@CRp)-|", "\(char):[view]-(<=0@Hp)-|" ]
+          vfls += [ "\(char):[view]|" ]
+        } else {
+          map["nextView"] = views[i + 1];
+          vfls += [ "\(char):[view][spacer][nextView]" ];
         }
 
         // VFL for otherAxis
-        vfls += [ "\(otherChar):|-(>=0)-[view]", "\(otherChar):[view]-(>=0@CRp_other)-|", "\(otherChar):[view]-(<=0@Hp_other)-|" ]
+        vfls += [ "\(otherChar):|-(>=0)-[view]", "\(otherChar):[view]-(>=0)-|" ]
 
         cs += NSLayoutConstraint.constraintsWithVisualFormats(vfls, options: NSLayoutFormatOptions(0), metrics: metrics, views: map)
       }
@@ -115,58 +123,38 @@ class StackGravityAreaView : UIView {
     func _alignmentConstraints() -> [NSLayoutConstraint] {
       let views = _viewsInPlay()
 
-      var cs : [NSLayoutConstraint] = []
-
-      if (views.count > 0) {
-        for i in 1 ..< views.count {
-          let view = views[i]
-          let previousView = views[i - 1]
-
-          cs += [ NSLayoutConstraint(
-            item: view, attribute: alignment,
-            relatedBy: .Equal,
-            toItem: previousView, attribute: alignment,
-            multiplier: 1.0, constant: 0.0
-            ) ]
-        }
-
-        if (views.count > 0) {
-          cs += [ NSLayoutConstraint(
-            item: self, attribute: alignment,
-            relatedBy: .Equal,
-            toItem: views[0], attribute: alignment,
-            multiplier: 1.0, constant: 0.0
-            ) ]
-        }
-      }
-
-      return cs
-    }
-
-    func _spacerConstraints() -> [NSLayoutConstraint] {
-      var cs : [NSLayoutConstraint] = []
-
-      let attribute : NSLayoutAttribute = (orientation == YLUserInterfaceLayoutOrientation.Horizontal) ? .Width : .Height;
-
-      for (i, view) in enumerate(views) {
-        if (i == 0) { continue }
-
-        cs += [ NSLayoutConstraint(item: spacers[0], attribute: attribute,
+      return views.map({ (view : UIView) -> NSLayoutConstraint in
+        NSLayoutConstraint(
+          item: self, attribute: self.alignment,
           relatedBy: .Equal,
-          toItem: spacers[i], attribute: attribute,
-          multiplier: 1, constant: 0) ]
+          toItem: view, attribute: self.alignment,
+          multiplier: 1.0, constant: 0.0
+        )
+      })
+    }
+    
+    func _updateInterViewSpacingConstraints() {
+      if (views.count == 0) { return }
+      
+      for i : Int in 0 ..< views.count - 1 {
+        let view = views[i]
+        spacers[i].spacing = delegate?.stackGravityAreaView(self, spacingAfterView: view) ?? 8.0
+        spacers[i].spacingPriority = max(750, huggingPriorityForAxis(orientation.toAxis()))
+        spacers[i].orientation = orientation
       }
-
-      return cs
     }
 
-    for spacer in spacers { spacer.hidden = !hasEqualSpacing }
-    for view in views { view.hidden = view.visibilityPriorityInStackView != 1000 }
+    for (i, view) in enumerate(views) {
+      let hidden = view.visibilityPriorityInStackView != 1000
+      
+      view.hidden = hidden
+      spacers[i].hidden = hidden
+    }
 
     self.removeConstraints(constraints())
     self.addConstraints(_mainConstraints())
     self.addConstraints(_alignmentConstraints())
-    if (hasEqualSpacing) { self.addConstraints(_spacerConstraints()) }
+    _updateInterViewSpacingConstraints()
     
     super.updateConstraints()
   }

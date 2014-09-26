@@ -27,15 +27,15 @@ extension UIView {
     }
   }
 
-  var gravityArea : StackViewGravity {
-    get {
-      return StackViewGravity(rawValue: objc_getAssociatedObject(self, &kStackViewGravityKey) as Int)!
-    }
-
-    set {
-      objc_setAssociatedObject(self, &kStackViewGravityKey, newValue.rawValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
-    }
-  }
+//  var gravityArea : StackViewGravity {
+//    get {
+//      return StackViewGravity(rawValue: objc_getAssociatedObject(self, &kStackViewGravityKey) as Int)!
+//    }
+//
+//    set {
+//      objc_setAssociatedObject(self, &kStackViewGravityKey, newValue.rawValue, objc_AssociationPolicy(OBJC_ASSOCIATION_RETAIN_NONATOMIC))
+//    }
+//  }
 }
 
 extension NSLayoutConstraint {
@@ -73,10 +73,12 @@ enum YLUserInterfaceLayoutOrientation {
   }
 }
 
-enum StackViewGravity : Int {
+enum StackViewGravityArea: Int {
   case Top
   case Leading
   case Center
   case Bottom
   case Trailing
 }
+
+let TAStackViewSpacingUseDefault = FLT_MAX

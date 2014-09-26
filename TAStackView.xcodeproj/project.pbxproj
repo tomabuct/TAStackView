@@ -17,6 +17,7 @@
 		C22BCE4019D3363400F97C79 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3A19D3363400F97C79 /* View.swift */; };
 		C22BCE4119D3363400F97C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3B19D3363400F97C79 /* ViewController.swift */; };
 		C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE4219D3364A00F97C79 /* AppDelegate.swift */; };
+		C22BCE7019D4D9F800F97C79 /* StackSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +45,7 @@
 		C22BCE3A19D3363400F97C79 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		C22BCE3B19D3363400F97C79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C22BCE4219D3364A00F97C79 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackSpacerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,9 +90,10 @@
 				C22BCE4219D3364A00F97C79 /* AppDelegate.swift */,
 				C22BCE3B19D3363400F97C79 /* ViewController.swift */,
 				C22BCE3A19D3363400F97C79 /* View.swift */,
+				C22BCE3819D3363400F97C79 /* StackView.swift */,
 				C22BCE3619D3363400F97C79 /* StackContainerView.swift */,
 				C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */,
-				C22BCE3819D3363400F97C79 /* StackView.swift */,
+				C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */,
 				C22BCE3919D3363400F97C79 /* StackViewUtils.swift */,
 				C22BCE1D19D335DF00F97C79 /* Images.xcassets */,
 				C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */,
@@ -230,6 +233,7 @@
 				C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */,
 				C22BCE3D19D3363400F97C79 /* StackGravityAreaView.swift in Sources */,
 				C22BCE3E19D3363400F97C79 /* StackView.swift in Sources */,
+				C22BCE7019D4D9F800F97C79 /* StackSpacerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +422,7 @@
 				C22BCE3219D335DF00F97C79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C22BCE3319D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +431,7 @@
 				C22BCE3519D335DF00F97C79 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

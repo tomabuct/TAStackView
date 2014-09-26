@@ -8,7 +8,10 @@
 
 import UIKit
 
-class StackContainerView : UIView {
+class StackContainerView : UIView, StackGravityAreaViewDelegate {
+  private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
+  private var _gravityAreaForView = Dictionary<UnsafePointer<Void>, StackViewGravityArea>()
+
   required init(coder aDecoder: NSCoder) {
     fatalError("NSCoder not supported")
   }
@@ -16,17 +19,20 @@ class StackContainerView : UIView {
   override init() {
     super.init(frame: CGRectZero)
 
-    for gravityView in gravityViewsArray { addSubview(gravityView) }
+    for gravityAreaView in gravityAreaViewsArray {
+      addSubview(gravityAreaView)
+      gravityAreaView.delegate = self
+    }
     for spacerView in gravityAreaSpacerViewsArray { addSubview(spacerView) }
 
     _installConstraints()
   }
 
   func _installConstraints() {
-    for gravityView in gravityViewsArray { gravityView.setTranslatesAutoresizingMaskIntoConstraints(false) }
+    for gravityAreaView in gravityAreaViewsArray { gravityAreaView.setTranslatesAutoresizingMaskIntoConstraints(false) }
   }
 
-  let gravityViews = (
+  let gravityAreaViews = (
     top: StackGravityAreaView(),
     leading: StackGravityAreaView(),
     center: StackGravityAreaView(),
@@ -35,22 +41,26 @@ class StackContainerView : UIView {
   )
 
   let gravityAreaSpacerViews = (
-    headCenter: UIView(),
-    headTail: UIView(),
-    centerTail: UIView()
+    headCenter: StackSpacerView(),
+    headTail: StackSpacerView(),
+    centerTail: StackSpacerView()
   )
 
-  private var gravityViewsArray : [StackGravityAreaView] {
-    return [ gravityViews.top, gravityViews.leading, gravityViews.center, gravityViews.trailing, gravityViews.bottom ]
+  private var gravityAreaViewsArray : [StackGravityAreaView] {
+    return [ gravityAreaViews.top, gravityAreaViews.leading, gravityAreaViews.center, gravityAreaViews.trailing, gravityAreaViews.bottom ]
   }
 
-  private var gravityAreaSpacerViewsArray : [UIView] {
+  private var gravityAreaSpacerViewsArray : [StackSpacerView] {
     return [ gravityAreaSpacerViews.headCenter, gravityAreaSpacerViews.headTail, gravityAreaSpacerViews.centerTail ]
+  }
+  
+  func stackGravityAreaView(gravityAreaView: StackGravityAreaView, spacingAfterView view: UIView) -> Float {
+    return spacingAfterView(view)
   }
 
   var spacing : Float = DefaultSpacing {
     didSet {
-      gravityViewsArray.map({ $0.spacing = self.spacing })
+      gravityAreaViewsArray.map({ $0.spacing = self.spacing })
 
       setNeedsUpdateConstraints()
     }
@@ -58,7 +68,7 @@ class StackContainerView : UIView {
 
   var hasEqualSpacing : Bool = false {
     didSet {
-      gravityViewsArray.map({ $0.hasEqualSpacing = self.hasEqualSpacing })
+      gravityAreaViewsArray.map({ $0.hasEqualSpacing = self.hasEqualSpacing })
 
       setNeedsUpdateConstraints()
     }
@@ -68,7 +78,7 @@ class StackContainerView : UIView {
     didSet {
       if (oldValue == alignment) { return }
 
-      gravityViewsArray.map({ $0.alignment = self.alignment })
+      gravityAreaViewsArray.map({ $0.alignment = self.alignment })
     }
   }
 
@@ -76,7 +86,8 @@ class StackContainerView : UIView {
     didSet {
       if (oldValue == orientation) { return }
 
-      gravityViewsArray.map({ $0.orientation = self.orientation })
+      gravityAreaViewsArray.map({ $0.orientation = self.orientation })
+      gravityAreaSpacerViewsArray.map({ $0.orientation = self.orientation })
 
       setNeedsUpdateConstraints()
     }
@@ -89,20 +100,51 @@ class StackContainerView : UIView {
   func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
     return 250//UILayoutPriorityDefaultLow
   }
+  
+  func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
+    gravityAreaViewForGravity(gravityAreaContainingView(view)).setVisibilityPriority(visibilityPriority, forView: view)
+  }
+  
+  func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
+    return gravityAreaViewForGravity(gravityAreaContainingView(view)).visibilityPriorityForView(view)
+  }
+  
+  func setCustomSpacing(spacing: Float?, afterView view: UIView) {
+    _customSpacingAfterView[unsafeAddressOf(view)] = spacing
+    
+    setNeedsUpdateConstraints()
+  }
+  
+  func gravityAreaContainingView(view : UIView) -> StackViewGravityArea {
+    return _gravityAreaForView[unsafeAddressOf(view)]!;
+  }
+  
+  func customSpacingAfterView(view : UIView) -> Float? {
+    return _customSpacingAfterView[unsafeAddressOf(view)]
+  }
+  
+  func spacingAfterView(view : UIView) -> Float {
+    return customSpacingAfterView(view) ?? spacing
+  }
+  
+  func addView(var view : UIView, inGravity gravity : StackViewGravityArea) {
+    _gravityAreaForView[unsafeAddressOf(view)] = gravity
+    gravityAreaViewForGravity(gravity).addView(view)
+    
+    setNeedsUpdateConstraints()
+  }
 
   override func updateConstraints() {
-    removeConstraints(constraints())
-
     let axis = orientation.toAxis()
 
-    let head = orientation == .Horizontal ? gravityViews.leading : gravityViews.top
+    let head = orientation == .Horizontal ? gravityAreaViews.leading : gravityAreaViews.top
+    let center = gravityAreaViews.center
+    let tail = orientation == .Horizontal ? gravityAreaViews.trailing : gravityAreaViews.bottom
+        
     let headCenterSpacer = gravityAreaSpacerViews.headCenter
     let headTailSpacer = gravityAreaSpacerViews.headTail
-    let center = gravityViews.center
     let centerTailSpacer = gravityAreaSpacerViews.centerTail
-    let tail = orientation == .Horizontal ? gravityViews.trailing : gravityViews.bottom
 
-    let metrics = [ "hP": huggingPriorityForAxis(axis), "spacing" : spacing ]
     let views = [
       "head": head,
       "headCenterSpacer": headCenterSpacer,
@@ -113,47 +155,90 @@ class StackContainerView : UIView {
     ]
 
     let char = orientation.toCharacter()
-    let otherChar = orientation.other().toCharacter()
 
-    var vfls : [String] = []
+    func _mainConstraintsForAxis() -> [NSLayoutConstraint] {
+      var vfls : [String] = []
+      
+      if (!head.isEmpty && !center.isEmpty && !tail.isEmpty) {       // 111
+        vfls += [ "\(char):|[head][headCenterSpacer][center][centerTailSpacer][tail]|" ]
+      } else if (!head.isEmpty && !center.isEmpty && tail.isEmpty) { // 110
+        vfls += [ "\(char):|[head][headCenterSpacer][center]|" ]
+      } else if (!head.isEmpty && center.isEmpty && !tail.isEmpty) { // 101
+        vfls += [ "\(char):|[head][headTailSpacer][tail]|" ]
+      } else if (!head.isEmpty && center.isEmpty && tail.isEmpty) {  // 100
+        vfls += [ "\(char):|[head]|" ]
+      } else if (head.isEmpty && !center.isEmpty && !tail.isEmpty) { // 011
+        vfls += [ "\(char):|[center][centerTailSpacer][tail]|" ]
+      } else if (head.isEmpty && !center.isEmpty && tail.isEmpty) {  // 010
+        vfls += [ "\(char):|[center]|" ]
+      } else if (head.isEmpty && center.isEmpty && !tail.isEmpty) {  // 001
+        vfls += [ "\(char):|[tail]|" ]
+      } else if (!head.isEmpty && !center.isEmpty && !tail.isEmpty) { // 000
+        // TODO
+      }
+      
+      return NSLayoutConstraint.constraintsWithVisualFormats(vfls, options: NSLayoutFormatOptions(0), metrics: [:], views: views)
+    }
+    
+    func _centerGravityAreaCenteringConstraint() -> NSLayoutConstraint {
+      let centeringAttribute : NSLayoutAttribute = orientation == .Horizontal ? .CenterX : .CenterY
+      
+      let centeringConstraint = NSLayoutConstraint(
+        item: center, attribute: centeringAttribute,
+        relatedBy: .Equal,
+        toItem: self, attribute: centeringAttribute,
+        multiplier: 1, constant: 0)
+      
+      centeringConstraint.priority = 250//UILayoutPriorityDefaultLow
 
-    if (!head.hidden && !center.hidden && !tail.hidden) {       // 111
-      vfls += [ "\(char):|[head][headCenterSpacer][center][centerTailSpacer][tail]|" ]
-    } else if (!head.hidden && !center.hidden && tail.hidden) { // 110
-      vfls += [ "\(char):|[head][headCenterSpacer][center]|" ]
-    } else if (!head.hidden && center.hidden && !tail.hidden) { // 101
-      vfls += [ "\(char):|[head][headTailSpacer][tail]|" ]
-    } else if (!head.hidden && center.hidden && tail.hidden) {  // 100
-      vfls += [ "\(char):|[head]|" ]
-    } else if (head.hidden && !center.hidden && !tail.hidden) { // 011
-      vfls += [ "\(char):|[center][centerTailSpacer][tail]|" ]
-    } else if (head.hidden && !center.hidden && tail.hidden) {  // 010
-      vfls += [ "\(char):|[center]|" ]
-    } else if (head.hidden && center.hidden && !tail.hidden) {  // 001
-      vfls += [ "\(char):|[tail]|" ]
-    } else if (!head.hidden && !center.hidden && tail.hidden) { // 000
-      // TODO
+      return centeringConstraint;
+    }
+    
+    func _constraintsForOtherAxis() -> [NSLayoutConstraint] {
+      let otherChar = orientation.other().toCharacter()
+      let vfls = [ "\(otherChar):|[head]|", "\(otherChar):|[center]|", "\(otherChar):|[tail]|"]
+      return NSLayoutConstraint.constraintsWithVisualFormats(vfls,
+        options: NSLayoutFormatOptions(0), metrics: [:], views: views)
+    }
+    
+    func _updateInterGravityAreaSpacingConstraints() {
+      if (!head.isEmpty && !center.isEmpty) {
+        headTailSpacer.spacing = spacingAfterView(head.views.last!)
+      }
+      
+      if (!center.isEmpty && !tail.isEmpty) {
+        centerTailSpacer.spacing = spacingAfterView(center.views.last!)
+      }
+      
+      if (!head.isEmpty && center.isEmpty && !tail.isEmpty) {
+        headTailSpacer.spacing = spacingAfterView(head.views.last!)
+      }
+      
+      let hP = huggingPriorityForAxis(axis)
+      gravityAreaSpacerViewsArray.map({ $0.spacingPriority = hP })
     }
 
-    // constraints for axis
-    if (hasEqualSpacing) {
-      // TODO
-    } else {
-      vfls += [ "\(char):[headCenterSpacer(spacing@hP)]", "\(char):[centerTailSpacer(spacing@hP)]" ]
-    }
-
-    let centeringAttribute : NSLayoutAttribute = orientation == .Horizontal ? .CenterX : .CenterY
-    addConstraint(NSLayoutConstraint(
-      item: center, attribute: centeringAttribute,
-      relatedBy: .Equal,
-      toItem: self, attribute: centeringAttribute,
-      multiplier: 1, constant: 0))
-
-    // constraints for other axis
-    vfls += [ "\(otherChar):|[head]|", "\(otherChar):|[center]|", "\(otherChar):|[tail]|"]
-
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormats(vfls, options: NSLayoutFormatOptions(0), metrics: metrics, views: views))
+    removeConstraints(constraints())
+    addConstraints(_mainConstraintsForAxis())
+    addConstraint(_centerGravityAreaCenteringConstraint())
+    addConstraints(_constraintsForOtherAxis())
+    _updateInterGravityAreaSpacingConstraints()
 
     super.updateConstraints()
+  }
+  
+  private func gravityAreaViewForGravity(gravity : StackViewGravityArea) -> StackGravityAreaView {
+    switch (gravity) {
+    case .Top:
+      return gravityAreaViews.top
+    case .Leading:
+      return gravityAreaViews.leading
+    case .Center:
+      return gravityAreaViews.center
+    case .Trailing:
+      return gravityAreaViews.trailing
+    case .Bottom:
+      return gravityAreaViews.bottom
+    }
   }
 }

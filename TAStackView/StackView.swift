@@ -13,7 +13,6 @@ class StackView : UIView {
     fatalError("NSCoding not supported")
   }
 
-
   override init() {
     super.init(frame: CGRectZero)
 
@@ -25,7 +24,7 @@ class StackView : UIView {
 
   // TODO: make only privately mutable
   private(set) var views : [UIView] = []
-
+  
   var edgeInsets : UIEdgeInsets = UIEdgeInsetsZero {
     didSet { setNeedsUpdateConstraints() }
   }
@@ -52,19 +51,27 @@ class StackView : UIView {
     }
   }
 
-  func addView(var view : UIView, inGravity gravity : StackViewGravity) {
-    gravityViewForGravity(gravity).addView(view)
+  func addView(var view : UIView, inGravity gravity : StackViewGravityArea) {
+    containerView.addView(view, inGravity: gravity)
+  }
+  
+  func setCustomSpacing(spacing: Float, afterView view: UIView) {
+    containerView.setCustomSpacing(spacing == TAStackViewSpacingUseDefault ? nil : spacing, afterView: view)
+  }
+  
+  func customSpacingAfterView(view : UIView) -> Float {
+    return containerView.customSpacingAfterView(view) ?? TAStackViewSpacingUseDefault
   }
 
   // TODO: insertView:atIndex:inGravity
   // TODO: removeView:
 
   func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
-    gravityViewForGravity(view.gravityArea).setVisibilityPriority(visibilityPriority, forView: view)
+    containerView.setVisibilityPriority(visibilityPriority, forView: view)
   }
 
   func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
-    return gravityViewForGravity(view.gravityArea).visibilityPriorityForView(view)
+    return containerView.visibilityPriorityForView(view)
   }
 
   override func updateConstraints() {
@@ -86,18 +93,5 @@ class StackView : UIView {
     super.updateConstraints()
   }
 
-  private func gravityViewForGravity(gravity : StackViewGravity) -> StackGravityAreaView {
-    switch (gravity) {
-    case .Top:
-      return containerView.gravityViews.top
-    case .Leading:
-      return containerView.gravityViews.leading
-    case .Center:
-      return containerView.gravityViews.center
-    case .Trailing:
-      return containerView.gravityViews.trailing
-    case .Bottom:
-      return containerView.gravityViews.bottom
-    }
-  }
+
 }

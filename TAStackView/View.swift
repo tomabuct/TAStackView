@@ -26,6 +26,8 @@ class View: UIView {
     stackView.layer.borderColor = UIColor.orangeColor().CGColor
     stackView.layer.borderWidth = 1.0
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Leading) }
+    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Center) }
+    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
 
     addSubview(stackView);
 
