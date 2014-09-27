@@ -83,26 +83,24 @@ class StackContainerView : UIView {
   private func gravityAreaViewForGravity(gravity : StackViewGravityArea) -> StackGravityAreaView {
     switch (gravity) {
     case .Top:
-      return gravityAreaViews.top
+      return gravityAreaViews.head
     case .Leading:
-      return gravityAreaViews.leading
+      return gravityAreaViews.head
     case .Center:
       return gravityAreaViews.center
     case .Trailing:
-      return gravityAreaViews.trailing
+      return gravityAreaViews.tail
     case .Bottom:
-      return gravityAreaViews.bottom
+      return gravityAreaViews.tail
     }
   }
   
 // MARK: Gravity Areas
 
   let gravityAreaViews = (
-    top: StackGravityAreaView(),
-    leading: StackGravityAreaView(),
+    head: StackGravityAreaView(),
     center: StackGravityAreaView(),
-    trailing: StackGravityAreaView(),
-    bottom: StackGravityAreaView()
+    tail: StackGravityAreaView()
   )
 
   let gravityAreaSpacerViews = (
@@ -111,7 +109,7 @@ class StackContainerView : UIView {
   )
 
   private var gravityAreaViewsArray : [StackGravityAreaView] {
-    return [ gravityAreaViews.top, gravityAreaViews.leading, gravityAreaViews.center, gravityAreaViews.trailing, gravityAreaViews.bottom ]
+    return [ gravityAreaViews.head, gravityAreaViews.center, gravityAreaViews.tail ]
   }
 
   private var gravityAreaSpacerViewsArray : [StackSpacerView] {
@@ -188,9 +186,9 @@ class StackContainerView : UIView {
   override func updateConstraints() {
     let axis = orientation.toAxis()
 
-    let head = orientation == .Horizontal ? gravityAreaViews.leading : gravityAreaViews.top
+    let head = gravityAreaViews.head
     let center = gravityAreaViews.center
-    let tail = orientation == .Horizontal ? gravityAreaViews.trailing : gravityAreaViews.bottom
+    let tail = gravityAreaViews.tail
         
     let spacer1 = gravityAreaSpacerViews.spacer1
     let spacer2 = gravityAreaSpacerViews.spacer2

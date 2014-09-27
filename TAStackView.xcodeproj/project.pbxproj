@@ -7,136 +7,138 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1D19D335DF00F97C79 /* Images.xcassets */; };
-		C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */; };
-		C22BCE2D19D335DF00F97C79 /* TAStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */; };
-		C22BCE3C19D3363400F97C79 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3619D3363400F97C79 /* StackContainerView.swift */; };
-		C22BCE3D19D3363400F97C79 /* StackGravityAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */; };
-		C22BCE3E19D3363400F97C79 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3819D3363400F97C79 /* StackView.swift */; };
-		C22BCE3F19D3363400F97C79 /* StackViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3919D3363400F97C79 /* StackViewUtils.swift */; };
-		C22BCE4019D3363400F97C79 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3A19D3363400F97C79 /* View.swift */; };
-		C22BCE4119D3363400F97C79 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE3B19D3363400F97C79 /* ViewController.swift */; };
-		C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE4219D3364A00F97C79 /* AppDelegate.swift */; };
-		C22BCE7019D4D9F800F97C79 /* StackSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */; };
+		C2FEA2AB19D67FE600452974 /* TAStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FEA2AA19D67FE600452974 /* TAStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C2FEA2B119D67FE600452974 /* TAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FEA2A519D67FE600452974 /* TAStackView.framework */; };
+		C2FEA2B819D67FE600452974 /* TAStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2B719D67FE600452974 /* TAStackViewTests.swift */; };
+		C2FEA2C619D67FF900452974 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C119D67FF900452974 /* StackContainerView.swift */; };
+		C2FEA2C719D67FF900452974 /* StackGravityAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */; };
+		C2FEA2C819D67FF900452974 /* StackSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C319D67FF900452974 /* StackSpacerView.swift */; };
+		C2FEA2C919D67FF900452974 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C419D67FF900452974 /* StackView.swift */; };
+		C2FEA2CA19D67FF900452974 /* StackViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C519D67FF900452974 /* StackViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		C22BCE2719D335DF00F97C79 /* PBXContainerItemProxy */ = {
+		C2FEA2B219D67FE600452974 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = C22BCE0919D335DF00F97C79 /* Project object */;
+			containerPortal = C2FEA29C19D67FE600452974 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = C22BCE1019D335DF00F97C79;
+			remoteGlobalIDString = C2FEA2A419D67FE600452974;
 			remoteInfo = TAStackView;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C22BCE1119D335DF00F97C79 /* TAStackView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TAStackView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		C22BCE1519D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C22BCE1D19D335DF00F97C79 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C22BCE2019D335DF00F97C79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C22BCE2B19D335DF00F97C79 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAStackViewTests.swift; sourceTree = "<group>"; };
-		C22BCE3619D3363400F97C79 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
-		C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackGravityAreaView.swift; sourceTree = "<group>"; };
-		C22BCE3819D3363400F97C79 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
-		C22BCE3919D3363400F97C79 /* StackViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewUtils.swift; sourceTree = "<group>"; };
-		C22BCE3A19D3363400F97C79 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		C22BCE3B19D3363400F97C79 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C22BCE4219D3364A00F97C79 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackSpacerView.swift; sourceTree = "<group>"; };
+		C2FEA2A519D67FE600452974 /* TAStackView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TAStackView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2FEA2A919D67FE600452974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2FEA2AA19D67FE600452974 /* TAStackView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TAStackView.h; sourceTree = "<group>"; };
+		C2FEA2B019D67FE600452974 /* TAStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2FEA2B619D67FE600452974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C2FEA2B719D67FE600452974 /* TAStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAStackViewTests.swift; sourceTree = "<group>"; };
+		C2FEA2C119D67FF900452974 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackContainerView.swift; path = ../../TAStackViewOldApp/TAStackView/StackContainerView.swift; sourceTree = "<group>"; };
+		C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackGravityAreaView.swift; path = ../../TAStackViewOldApp/TAStackView/StackGravityAreaView.swift; sourceTree = "<group>"; };
+		C2FEA2C319D67FF900452974 /* StackSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackSpacerView.swift; path = ../../TAStackViewOldApp/TAStackView/StackSpacerView.swift; sourceTree = "<group>"; };
+		C2FEA2C419D67FF900452974 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackView.swift; path = ../../TAStackViewOldApp/TAStackView/StackView.swift; sourceTree = "<group>"; };
+		C2FEA2C519D67FF900452974 /* StackViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackViewUtils.swift; path = ../../TAStackViewOldApp/TAStackView/StackViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C22BCE0E19D335DF00F97C79 /* Frameworks */ = {
+		C2FEA2A119D67FE600452974 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C22BCE2319D335DF00F97C79 /* Frameworks */ = {
+		C2FEA2AD19D67FE600452974 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2FEA2B119D67FE600452974 /* TAStackView.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C22BCE0819D335DF00F97C79 = {
+		C2FEA29B19D67FE600452974 = {
 			isa = PBXGroup;
 			children = (
-				C22BCE1319D335DF00F97C79 /* TAStackView */,
-				C22BCE2919D335DF00F97C79 /* TAStackViewTests */,
-				C22BCE1219D335DF00F97C79 /* Products */,
+				C2FEA2A719D67FE600452974 /* TAStackView */,
+				C2FEA2B419D67FE600452974 /* TAStackViewTests */,
+				C2FEA2A619D67FE600452974 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		C22BCE1219D335DF00F97C79 /* Products */ = {
+		C2FEA2A619D67FE600452974 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE1119D335DF00F97C79 /* TAStackView.app */,
-				C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */,
+				C2FEA2A519D67FE600452974 /* TAStackView.framework */,
+				C2FEA2B019D67FE600452974 /* TAStackViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C22BCE1319D335DF00F97C79 /* TAStackView */ = {
+		C2FEA2A719D67FE600452974 /* TAStackView */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE4219D3364A00F97C79 /* AppDelegate.swift */,
-				C22BCE3B19D3363400F97C79 /* ViewController.swift */,
-				C22BCE3A19D3363400F97C79 /* View.swift */,
-				C22BCE3819D3363400F97C79 /* StackView.swift */,
-				C22BCE3619D3363400F97C79 /* StackContainerView.swift */,
-				C22BCE3719D3363400F97C79 /* StackGravityAreaView.swift */,
-				C22BCE6F19D4D9F800F97C79 /* StackSpacerView.swift */,
-				C22BCE3919D3363400F97C79 /* StackViewUtils.swift */,
-				C22BCE1D19D335DF00F97C79 /* Images.xcassets */,
-				C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */,
-				C22BCE1419D335DF00F97C79 /* Supporting Files */,
+				C2FEA2C419D67FF900452974 /* StackView.swift */,
+				C2FEA2C119D67FF900452974 /* StackContainerView.swift */,
+				C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */,
+				C2FEA2C319D67FF900452974 /* StackSpacerView.swift */,
+				C2FEA2C519D67FF900452974 /* StackViewUtils.swift */,
+				C2FEA2AA19D67FE600452974 /* TAStackView.h */,
+				C2FEA2A819D67FE600452974 /* Supporting Files */,
 			);
 			path = TAStackView;
 			sourceTree = "<group>";
 		};
-		C22BCE1419D335DF00F97C79 /* Supporting Files */ = {
+		C2FEA2A819D67FE600452974 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE1519D335DF00F97C79 /* Info.plist */,
+				C2FEA2A919D67FE600452974 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C22BCE2919D335DF00F97C79 /* TAStackViewTests */ = {
+		C2FEA2B419D67FE600452974 /* TAStackViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE2C19D335DF00F97C79 /* TAStackViewTests.swift */,
-				C22BCE2A19D335DF00F97C79 /* Supporting Files */,
+				C2FEA2B719D67FE600452974 /* TAStackViewTests.swift */,
+				C2FEA2B519D67FE600452974 /* Supporting Files */,
 			);
 			path = TAStackViewTests;
 			sourceTree = "<group>";
 		};
-		C22BCE2A19D335DF00F97C79 /* Supporting Files */ = {
+		C2FEA2B519D67FE600452974 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				C22BCE2B19D335DF00F97C79 /* Info.plist */,
+				C2FEA2B619D67FE600452974 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		C2FEA2A219D67FE600452974 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C2FEA2AB19D67FE600452974 /* TAStackView.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		C22BCE1019D335DF00F97C79 /* TAStackView */ = {
+		C2FEA2A419D67FE600452974 /* TAStackView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C22BCE3019D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackView" */;
+			buildConfigurationList = C2FEA2BB19D67FE600452974 /* Build configuration list for PBXNativeTarget "TAStackView" */;
 			buildPhases = (
-				C22BCE0D19D335DF00F97C79 /* Sources */,
-				C22BCE0E19D335DF00F97C79 /* Frameworks */,
-				C22BCE0F19D335DF00F97C79 /* Resources */,
+				C2FEA2A019D67FE600452974 /* Sources */,
+				C2FEA2A119D67FE600452974 /* Frameworks */,
+				C2FEA2A219D67FE600452974 /* Headers */,
+				C2FEA2A319D67FE600452974 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -144,75 +146,71 @@
 			);
 			name = TAStackView;
 			productName = TAStackView;
-			productReference = C22BCE1119D335DF00F97C79 /* TAStackView.app */;
-			productType = "com.apple.product-type.application";
+			productReference = C2FEA2A519D67FE600452974 /* TAStackView.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		C22BCE2519D335DF00F97C79 /* TAStackViewTests */ = {
+		C2FEA2AF19D67FE600452974 /* TAStackViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C22BCE3319D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */;
+			buildConfigurationList = C2FEA2BE19D67FE600452974 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */;
 			buildPhases = (
-				C22BCE2219D335DF00F97C79 /* Sources */,
-				C22BCE2319D335DF00F97C79 /* Frameworks */,
-				C22BCE2419D335DF00F97C79 /* Resources */,
+				C2FEA2AC19D67FE600452974 /* Sources */,
+				C2FEA2AD19D67FE600452974 /* Frameworks */,
+				C2FEA2AE19D67FE600452974 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				C22BCE2819D335DF00F97C79 /* PBXTargetDependency */,
+				C2FEA2B319D67FE600452974 /* PBXTargetDependency */,
 			);
 			name = TAStackViewTests;
 			productName = TAStackViewTests;
-			productReference = C22BCE2619D335DF00F97C79 /* TAStackViewTests.xctest */;
+			productReference = C2FEA2B019D67FE600452974 /* TAStackViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		C22BCE0919D335DF00F97C79 /* Project object */ = {
+		C2FEA29C19D67FE600452974 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tom Abraham";
 				TargetAttributes = {
-					C22BCE1019D335DF00F97C79 = {
+					C2FEA2A419D67FE600452974 = {
 						CreatedOnToolsVersion = 6.1;
 					};
-					C22BCE2519D335DF00F97C79 = {
+					C2FEA2AF19D67FE600452974 = {
 						CreatedOnToolsVersion = 6.1;
-						TestTargetID = C22BCE1019D335DF00F97C79;
 					};
 				};
 			};
-			buildConfigurationList = C22BCE0C19D335DF00F97C79 /* Build configuration list for PBXProject "TAStackView" */;
+			buildConfigurationList = C2FEA29F19D67FE600452974 /* Build configuration list for PBXProject "TAStackView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
-				Base,
 			);
-			mainGroup = C22BCE0819D335DF00F97C79;
-			productRefGroup = C22BCE1219D335DF00F97C79 /* Products */;
+			mainGroup = C2FEA29B19D67FE600452974;
+			productRefGroup = C2FEA2A619D67FE600452974 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C22BCE1019D335DF00F97C79 /* TAStackView */,
-				C22BCE2519D335DF00F97C79 /* TAStackViewTests */,
+				C2FEA2A419D67FE600452974 /* TAStackView */,
+				C2FEA2AF19D67FE600452974 /* TAStackViewTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		C22BCE0F19D335DF00F97C79 /* Resources */ = {
+		C2FEA2A319D67FE600452974 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22BCE2119D335DF00F97C79 /* LaunchScreen.xib in Resources */,
-				C22BCE1E19D335DF00F97C79 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C22BCE2419D335DF00F97C79 /* Resources */ = {
+		C2FEA2AE19D67FE600452974 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -222,52 +220,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		C22BCE0D19D335DF00F97C79 /* Sources */ = {
+		C2FEA2A019D67FE600452974 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22BCE4119D3363400F97C79 /* ViewController.swift in Sources */,
-				C22BCE3C19D3363400F97C79 /* StackContainerView.swift in Sources */,
-				C22BCE3F19D3363400F97C79 /* StackViewUtils.swift in Sources */,
-				C22BCE4019D3363400F97C79 /* View.swift in Sources */,
-				C22BCE4319D3364A00F97C79 /* AppDelegate.swift in Sources */,
-				C22BCE3D19D3363400F97C79 /* StackGravityAreaView.swift in Sources */,
-				C22BCE3E19D3363400F97C79 /* StackView.swift in Sources */,
-				C22BCE7019D4D9F800F97C79 /* StackSpacerView.swift in Sources */,
+				C2FEA2C619D67FF900452974 /* StackContainerView.swift in Sources */,
+				C2FEA2C819D67FF900452974 /* StackSpacerView.swift in Sources */,
+				C2FEA2C719D67FF900452974 /* StackGravityAreaView.swift in Sources */,
+				C2FEA2CA19D67FF900452974 /* StackViewUtils.swift in Sources */,
+				C2FEA2C919D67FF900452974 /* StackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C22BCE2219D335DF00F97C79 /* Sources */ = {
+		C2FEA2AC19D67FE600452974 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C22BCE2D19D335DF00F97C79 /* TAStackViewTests.swift in Sources */,
+				C2FEA2B819D67FE600452974 /* TAStackViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C22BCE2819D335DF00F97C79 /* PBXTargetDependency */ = {
+		C2FEA2B319D67FE600452974 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C22BCE1019D335DF00F97C79 /* TAStackView */;
-			targetProxy = C22BCE2719D335DF00F97C79 /* PBXContainerItemProxy */;
+			target = C2FEA2A419D67FE600452974 /* TAStackView */;
+			targetProxy = C2FEA2B219D67FE600452974 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
-/* Begin PBXVariantGroup section */
-		C22BCE1F19D335DF00F97C79 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C22BCE2019D335DF00F97C79 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
-
 /* Begin XCBuildConfiguration section */
-		C22BCE2E19D335DF00F97C79 /* Debug */ = {
+		C2FEA2B919D67FE600452974 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -286,6 +270,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -307,10 +293,12 @@
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
 		};
-		C22BCE2F19D335DF00F97C79 /* Release */ = {
+		C2FEA2BA19D67FE600452974 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -329,6 +317,8 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -343,36 +333,44 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
-		C22BCE3119D335DF00F97C79 /* Debug */ = {
+		C2FEA2BC19D67FE600452974 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TAStackView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
-		C22BCE3219D335DF00F97C79 /* Release */ = {
+		C2FEA2BD19D67FE600452974 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = TAStackView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
-		C22BCE3419D335DF00F97C79 /* Debug */ = {
+		C2FEA2BF19D67FE600452974 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -384,14 +382,12 @@
 				INFOPLIST_FILE = TAStackViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAStackView.app/TAStackView";
 			};
 			name = Debug;
 		};
-		C22BCE3519D335DF00F97C79 /* Release */ = {
+		C2FEA2C019D67FE600452974 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -399,41 +395,38 @@
 				INFOPLIST_FILE = TAStackViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TAStackView.app/TAStackView";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C22BCE0C19D335DF00F97C79 /* Build configuration list for PBXProject "TAStackView" */ = {
+		C2FEA29F19D67FE600452974 /* Build configuration list for PBXProject "TAStackView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C22BCE2E19D335DF00F97C79 /* Debug */,
-				C22BCE2F19D335DF00F97C79 /* Release */,
+				C2FEA2B919D67FE600452974 /* Debug */,
+				C2FEA2BA19D67FE600452974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C22BCE3019D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackView" */ = {
+		C2FEA2BB19D67FE600452974 /* Build configuration list for PBXNativeTarget "TAStackView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C22BCE3119D335DF00F97C79 /* Debug */,
-				C22BCE3219D335DF00F97C79 /* Release */,
+				C2FEA2BC19D67FE600452974 /* Debug */,
+				C2FEA2BD19D67FE600452974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
-		C22BCE3319D335DF00F97C79 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */ = {
+		C2FEA2BE19D67FE600452974 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C22BCE3419D335DF00F97C79 /* Debug */,
-				C22BCE3519D335DF00F97C79 /* Release */,
+				C2FEA2BF19D67FE600452974 /* Debug */,
+				C2FEA2C019D67FE600452974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = C22BCE0919D335DF00F97C79 /* Project object */;
+	rootObject = C2FEA29C19D67FE600452974 /* Project object */;
 }

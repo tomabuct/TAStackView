@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum StackViewVisibilityPriority : Float {
+public enum StackViewVisibilityPriority : Float {
   case MustHold = 1000
   case NotVisible = 0
 }
@@ -43,7 +43,7 @@ extension NSLayoutConstraint {
   }
 }
 
-enum TAUserInterfaceLayoutOrientation {
+public enum TAUserInterfaceLayoutOrientation {
   case Horizontal
   case Vertical
 
@@ -60,7 +60,7 @@ enum TAUserInterfaceLayoutOrientation {
   }
 }
 
-enum StackViewGravityArea: Int {
+public enum StackViewGravityArea: Int {
   case Top
   case Leading
   case Center

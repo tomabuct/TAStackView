@@ -8,21 +8,21 @@
 
 import UIKit
 
-class StackView : UIView {
+@objc(TAStackView) public class StackView : UIView {
   private let containerView = StackContainerView()
   
-  required init(coder aDecoder: NSCoder) {
+  public required init(coder aDecoder: NSCoder) {
     fatalError("NSCoding not supported")
   }
 
-  override init() {
+  public override init() {
     super.init(frame: CGRectZero)
 
     containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(containerView)
   }
 
-  convenience init(views : [UIView]) {
+  public convenience init(views : [UIView]) {
     self.init()
 
     // the NSStackView spec says so...
@@ -33,11 +33,11 @@ class StackView : UIView {
   
 // MARK: General
   
-  var alignment : NSLayoutAttribute = DefaultAlignment {
+  public var alignment : NSLayoutAttribute = DefaultAlignment {
     didSet { containerView.alignment = alignment }
   }
 
-  var orientation : TAUserInterfaceLayoutOrientation = DefaultOrientation {
+  public var orientation : TAUserInterfaceLayoutOrientation = DefaultOrientation {
     didSet {
       if (oldValue == orientation) { return }
 
@@ -48,73 +48,75 @@ class StackView : UIView {
   }
   
 // MARK: Views
-  func addView(view : UIView, inGravity gravity : StackViewGravityArea) {
+  public func addView(view : UIView, inGravity gravity : StackViewGravityArea) {
     containerView.addView(view, inGravity: gravity)
   }
   
-  func insertView(view : UIView, atIndex index: Int, inGravity gravity: StackViewGravityArea) {
+  public func insertView(view : UIView, atIndex index: Int, inGravity gravity: StackViewGravityArea) {
     containerView.insertView(view, atIndex: index, inGravity: gravity)
   }
   
-  func setViews(views : [UIView], inGravity gravity : StackViewGravityArea) {
+  public func setViews(views : [UIView], inGravity gravity : StackViewGravityArea) {
     containerView.setViews(views, inGravity: gravity)
   }
   
-  func removeView(view : UIView) {
+  public func removeView(view : UIView) {
     containerView.removeView(view)
   }
   
 // TODO: Spacing
 
-  func setCustomSpacing(spacing: Float, afterView view: UIView) {
+  public func setCustomSpacing(spacing: Float, afterView view: UIView) {
     containerView.setCustomSpacing(spacing == TAStackViewSpacingUseDefault ? nil : spacing, afterView: view)
   }
   
-  func customSpacingAfterView(view : UIView) -> Float {
+  public func customSpacingAfterView(view : UIView) -> Float {
     return containerView.customSpacingAfterView(view) ?? TAStackViewSpacingUseDefault
   }
   
-  var spacing : Float = DefaultSpacing {
+  public var spacing : Float = DefaultSpacing {
     didSet { containerView.spacing = spacing }
   }
   
-  var hasEqualSpacing : Bool = false {
+  public var hasEqualSpacing : Bool = false {
     didSet { containerView.hasEqualSpacing = hasEqualSpacing }
   }
   
-  var edgeInsets : UIEdgeInsets = UIEdgeInsetsZero {
+  public var edgeInsets : UIEdgeInsets = UIEdgeInsetsZero {
     didSet { setNeedsUpdateConstraints() }
   }
   
 // MARK: Priorities
 
-  func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
+  public func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
     containerView.setVisibilityPriority(visibilityPriority, forView: view)
   }
 
-  func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
+  public func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
     return containerView.visibilityPriorityForView(view)
   }
   
-  func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+  public func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
     containerView.setClippingResistancePriority(priority, forAxis: axis)
+    
+    setNeedsUpdateConstraints()
   }
   
-  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+  public func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
     return containerView.clippingResistancePriorityForAxis(axis)
   }
   
-  func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+  public func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
     containerView.setHuggingPriority(priority, forAxis: axis)
   }
   
-  func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+  public func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
     return containerView.huggingPriorityForAxis(axis)
   }
   
 // MARK: Layout
 
-  override func updateConstraints() {
+  override public func updateConstraints() {
     removeConstraints(constraints())
 
     let views = [ "containerView" : containerView ]._bridgeToObjectiveC()
@@ -124,11 +126,9 @@ class StackView : UIView {
       
       "b": edgeInsets.bottom,
       "CRp_v": clippingResistancePriorityForAxis(UILayoutConstraintAxis.Vertical),
-      "Hp_v": huggingPriorityForAxis(.Vertical),
       
       "r": edgeInsets.right,
       "CRp_h": clippingResistancePriorityForAxis(.Horizontal),
-      "Hp_h": huggingPriorityForAxis(.Horizontal)
     ]
 
     addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(l)-[containerView]-(r@CRp_h,<=r)-|",
