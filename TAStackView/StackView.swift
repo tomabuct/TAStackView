@@ -9,6 +9,8 @@
 import UIKit
 
 class StackView : UIView {
+  private let containerView = StackContainerView()
+  
   required init(coder aDecoder: NSCoder) {
     fatalError("NSCoding not supported")
   }
@@ -19,24 +21,9 @@ class StackView : UIView {
     containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(containerView)
   }
-
-  private let containerView = StackContainerView()
-
-  // TODO: make only privately mutable
-  private(set) var views : [UIView] = []
   
-  var edgeInsets : UIEdgeInsets = UIEdgeInsetsZero {
-    didSet { setNeedsUpdateConstraints() }
-  }
-
-  var spacing : Float = DefaultSpacing {
-    didSet { containerView.spacing = spacing }
-  }
-
-  var hasEqualSpacing : Bool = false {
-    didSet { containerView.hasEqualSpacing = hasEqualSpacing }
-  }
-
+// MARK: General
+  
   var alignment : NSLayoutAttribute = DefaultAlignment {
     didSet { containerView.alignment = alignment }
   }
@@ -50,11 +37,21 @@ class StackView : UIView {
       alignment = orientation == .Horizontal ? .CenterY : .CenterX;
     }
   }
+  
+// MARK: Views
+  
+  // TODO: make only privately mutable
+  private(set) var views : [UIView] = []
 
   func addView(var view : UIView, inGravity gravity : StackViewGravityArea) {
     containerView.addView(view, inGravity: gravity)
   }
   
+  // TODO: insertView:atIndex:inGravity
+  // TODO: removeView:
+
+// TODO: Spacing
+
   func setCustomSpacing(spacing: Float, afterView view: UIView) {
     containerView.setCustomSpacing(spacing == TAStackViewSpacingUseDefault ? nil : spacing, afterView: view)
   }
@@ -62,9 +59,20 @@ class StackView : UIView {
   func customSpacingAfterView(view : UIView) -> Float {
     return containerView.customSpacingAfterView(view) ?? TAStackViewSpacingUseDefault
   }
-
-  // TODO: insertView:atIndex:inGravity
-  // TODO: removeView:
+  
+  var spacing : Float = DefaultSpacing {
+    didSet { containerView.spacing = spacing }
+  }
+  
+  var hasEqualSpacing : Bool = false {
+    didSet { containerView.hasEqualSpacing = hasEqualSpacing }
+  }
+  
+  var edgeInsets : UIEdgeInsets = UIEdgeInsetsZero {
+    didSet { setNeedsUpdateConstraints() }
+  }
+  
+// MARK: Priorities
 
   func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
     containerView.setVisibilityPriority(visibilityPriority, forView: view)
@@ -74,13 +82,23 @@ class StackView : UIView {
     return containerView.visibilityPriorityForView(view)
   }
   
+  func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+    containerView.setClippingResistancePriority(priority, forAxis: axis)
+  }
+  
   func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
     return containerView.clippingResistancePriorityForAxis(axis)
+  }
+  
+  func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+    containerView.setHuggingPriority(priority, forAxis: axis)
   }
   
   func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
     return containerView.huggingPriorityForAxis(axis)
   }
+  
+// MARK: Layout
 
   override func updateConstraints() {
     removeConstraints(constraints())
@@ -106,6 +124,4 @@ class StackView : UIView {
 
     super.updateConstraints()
   }
-
-
 }

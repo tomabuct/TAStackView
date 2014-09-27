@@ -26,7 +26,7 @@ class StackSpacerView : UIView {
     // always invisible
     hidden = true
     
-    // always used in manual Auto Layout contexts
+    // always used in manual Auto Layout context
     setTranslatesAutoresizingMaskIntoConstraints(false)
 
     // layout
@@ -53,7 +53,7 @@ class StackSpacerView : UIView {
     didSet { setNeedsUpdateConstraints() }
   }
   
-  var spacingPriority : UILayoutPriority = 250 { // UILayoutPriorityDefaultLow
+  var spacingPriority : UILayoutPriority = DefaultSpacingPriority {
     didSet { setNeedsUpdateConstraints() }
   }
   

@@ -8,11 +8,22 @@
 
 import UIKit
 
-typealias StackViewVisibilityPriority = Float
+enum StackViewVisibilityPriority : Float {
+  case MustHold = 1000
+  case NotVisible = 0
+}
+
+let LayoutPriorityDefaultLow : UILayoutPriority = 250
+let LayoutPriorityDefaultHigh : UILayoutPriority  = 750
+let LayoutPriorityDefaultRequired : UILayoutPriority = 1000
 
 let DefaultSpacing : Float = 8.0
 let DefaultAlignment : NSLayoutAttribute = .CenterY
 let DefaultOrientation : TAUserInterfaceLayoutOrientation = .Horizontal
+let DefaultClippingResistancePriority : UILayoutPriority = LayoutPriorityDefaultRequired
+let DefaultHuggingPriority : UILayoutPriority = LayoutPriorityDefaultLow
+let DefaultSpacingPriority : UILayoutPriority = DefaultHuggingPriority
+let CenterGravityAreaCenteringPriority : UILayoutPriority = DefaultHuggingPriority
 
 extension NSLayoutConstraint {
   class func constraintsWithVisualFormats(

@@ -24,12 +24,13 @@ class View: UIView {
 
     self.backgroundColor = UIColor.brownColor()
 
+    stackView.setClippingResistancePriority(999, forAxis: .Horizontal)
     stackView.backgroundColor = UIColor.purpleColor()
     stackView.layer.borderColor = UIColor.orangeColor().CGColor
     stackView.layer.borderWidth = 1.0
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Leading) }
     for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Center) }
-//    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
+    for i in 0..<3 { stackView.addView(crazyRandomView(), inGravity: .Trailing) }
 
 //    stackView.frame = bounds
     stackView.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | .FlexibleBottomMargin
@@ -94,15 +95,15 @@ class View: UIView {
     let views = [ "stackView": stackView ]
 
     stackView.setTranslatesAutoresizingMaskIntoConstraints(false)
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(10)-[stackView]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
-    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[stackView]", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-(10)-[stackView]-10-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-(20)-[stackView]-20-|", options: NSLayoutFormatOptions(0), metrics: nil, views: views))
   }
 
   func _tappedView(tapGR : UITapGestureRecognizer) {
     layoutIfNeeded();
 
     let view = tapGR.view
-    self.stackView.setVisibilityPriority(0, forView: view!)
+    self.stackView.setVisibilityPriority(.NotVisible, forView: view!)
 
     UIView.animateWithDuration(kDuration, animations: { self.layoutIfNeeded() })
   }

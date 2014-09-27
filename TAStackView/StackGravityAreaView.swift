@@ -8,14 +8,27 @@
 
 import UIKit
 
-class StackGravityAreaView : UIView {  
-  private var allViews : [UIView] = []
-  private var spacers : [StackSpacerView] = []
+class StackGravityAreaView : UIView {
+  required init(coder aDecoder: NSCoder) {
+    fatalError("doesn't support NSCoder")
+  }
   
-  private var _visibilityPriorityForView = Dictionary<UnsafePointer<Void>, StackViewVisibilityPriority>()
-  private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    
+    layer.borderColor = UIColor.redColor().CGColor
+    layer.borderWidth = 0.5
+
+    // always used in manual Auto Layout context
+    setTranslatesAutoresizingMaskIntoConstraints(false)
+  }
+  
+  override convenience init() {
+    self.init(frame: CGRectNull)
+  }
   
 // MARK: General
+  private var allViews : [UIView] = []
   
   func addView(var view : UIView) {
     allViews += [ view ];
@@ -31,13 +44,13 @@ class StackGravityAreaView : UIView {
   }
   
   // TODO: add support for non-binary visibility priorities
-  var viewsInPlay : [UIView] { return allViews.filter({ self.visibilityPriorityForView($0) == 1000 }) }
+  var viewsInPlay : [UIView] { return allViews.filter({ self.visibilityPriorityForView($0) == .MustHold }) }
   
-  var alignment : NSLayoutAttribute = .CenterY {
+  var alignment : NSLayoutAttribute = DefaultAlignment {
     didSet { setNeedsUpdateConstraints() }
   }
   
-  var orientation : TAUserInterfaceLayoutOrientation = .Horizontal {
+  var orientation : TAUserInterfaceLayoutOrientation = DefaultOrientation {
     didSet {
       spacers.map({$0.orientation = self.orientation})
       
@@ -48,6 +61,9 @@ class StackGravityAreaView : UIView {
   var shouldShow : Bool { return !viewsInPlay.isEmpty }
   
 // MARK: Spacing
+  private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
+
+  private(set) var spacers : [StackSpacerView] = []
   
   var spacingAfter : Float { assert(!viewsInPlay.isEmpty); return spacingAfterView(viewsInPlay.last!) }
   
@@ -61,31 +77,60 @@ class StackGravityAreaView : UIView {
     return _customSpacingAfterView[unsafeAddressOf(view)]
   }
   
-  func spacingAfterView(view : UIView) -> Float {
+  private func spacingAfterView(view : UIView) -> Float {
     return customSpacingAfterView(view) ?? spacing
   }
 
   var spacing : Float = DefaultSpacing {
     didSet { setNeedsUpdateConstraints() }
   }
+  
+  var hasEqualSpacing : Bool = false {
+    didSet { setNeedsUpdateConstraints() }
+  }
 
 // MARK: Priorities
-
-  func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
-    assert(visibilityPriority == 1000 || visibilityPriority == 0, "only support binary visibility priority for now")
-
-    _visibilityPriorityForView[unsafeAddressOf(view)] = visibilityPriority
-
-    setNeedsUpdateConstraints()
-  }
-
-  func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
-    return _visibilityPriorityForView[unsafeAddressOf(view)] ?? 1000
+  private var _visibilityPriorityForView = Dictionary<UnsafePointer<Void>, StackViewVisibilityPriority>()
+  
+  private var horizontalClippingResistancePriority = DefaultClippingResistancePriority
+  private var verticalClippingResistancePriority = DefaultClippingResistancePriority
+  private var horizontalHuggingPriority = DefaultHuggingPriority
+  private var verticalHuggingPriority = DefaultHuggingPriority
+  
+  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return axis == .Horizontal ? horizontalClippingResistancePriority : verticalClippingResistancePriority
   }
   
+  func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+    if (axis == .Horizontal) {
+      horizontalClippingResistancePriority = priority
+    } else {
+      verticalClippingResistancePriority = priority
+    }
+  }
+  
+  func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
+    if (axis == .Horizontal) {
+      horizontalHuggingPriority = priority
+    } else {
+      verticalHuggingPriority = priority
+    }
+  }
   
   func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
-    return 250//UILayoutPriorityDefaultLow
+    return axis == .Horizontal ? horizontalHuggingPriority : verticalHuggingPriority
+  }
+  
+  func setVisibilityPriority(visibilityPriority : StackViewVisibilityPriority, forView view : UIView) {
+    assert(visibilityPriority == .MustHold || visibilityPriority == .NotVisible, "only support binary visibility priority for now")
+    
+    _visibilityPriorityForView[unsafeAddressOf(view)] = visibilityPriority
+    
+    setNeedsUpdateConstraints()
+  }
+  
+  func visibilityPriorityForView(view : UIView) -> StackViewVisibilityPriority {
+    return _visibilityPriorityForView[unsafeAddressOf(view)] ?? .MustHold
   }
 
 // MARK: Layout
@@ -150,14 +195,16 @@ class StackGravityAreaView : UIView {
         let view = allViews[i]
         let spacer = spacers[i]
         
+        let hP = huggingPriorityForAxis(orientation.toAxis())
+        
         spacer.spacing = spacingAfterView(view)
-        spacer.spacingPriority = max(750, huggingPriorityForAxis(orientation.toAxis()))
+        spacer.spacingPriority = hasEqualSpacing ? hP : max(LayoutPriorityDefaultHigh, hP)
         spacer.orientation = orientation
       }
     }
     
     func _updateViewVisibility() {
-      allViews.map({ $0.hidden = self.visibilityPriorityForView($0) != 1000 })
+      allViews.map({ $0.hidden = self.visibilityPriorityForView($0) != .MustHold })
     }
 
     self.removeConstraints(constraints())
