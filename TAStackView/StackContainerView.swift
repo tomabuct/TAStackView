@@ -142,6 +142,8 @@ class StackContainerView : UIView {
     } else {
       verticalClippingResistancePriority = priority
     }
+    
+    for view in gravityAreaViewsArray { view.setClippingResistancePriority(priority, forAxis: axis) }
   }
   
   func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
@@ -154,6 +156,8 @@ class StackContainerView : UIView {
     } else {
       verticalHuggingPriority = priority
     }
+    
+    for view in gravityAreaViewsArray { view.setHuggingPriority(priority, forAxis: axis) }
   }
   
   func huggingPriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {

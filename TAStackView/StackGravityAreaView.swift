@@ -137,10 +137,6 @@ class StackGravityAreaView : UIView {
   private var horizontalHuggingPriority = DefaultHuggingPriority
   private var verticalHuggingPriority = DefaultHuggingPriority
   
-  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
-    return axis == .Horizontal ? horizontalClippingResistancePriority : verticalClippingResistancePriority
-  }
-  
   func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
     if (axis == .Horizontal) {
       horizontalClippingResistancePriority = priority
@@ -149,6 +145,10 @@ class StackGravityAreaView : UIView {
     }
   }
   
+  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return axis == .Horizontal ? horizontalClippingResistancePriority : verticalClippingResistancePriority
+  }
+
   func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
     if (axis == .Horizontal) {
       horizontalHuggingPriority = priority
