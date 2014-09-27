@@ -52,6 +52,26 @@ class StackContainerView : UIView {
     setNeedsUpdateConstraints()
   }
   
+  func insertView(view: UIView, atIndex index: Int, inGravity gravity: StackViewGravityArea) {
+    setGravityArea(gravity, containingView: view)
+    gravityAreaViewForGravity(gravity).insertView(view, atIndex: index)
+
+    setNeedsUpdateConstraints()
+  }
+  
+  func setViews(views : [UIView], inGravity gravity : StackViewGravityArea) {
+    for view in views { setGravityArea(gravity, containingView: view) }
+    gravityAreaViewForGravity(gravity).setViews(views)
+    
+    setNeedsUpdateConstraints()
+  }
+  
+  func removeView(view : UIView) {
+    gravityAreaViewForGravity(gravityAreaContainingView(view)).removeView(view)
+    
+    setNeedsUpdateConstraints()
+  }
+  
   private func setGravityArea(gravityArea : StackViewGravityArea, containingView view: UIView) {
     _gravityAreaContainingView[unsafeAddressOf(view)] = gravityArea
   }

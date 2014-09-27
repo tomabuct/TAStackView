@@ -21,6 +21,15 @@ class StackView : UIView {
     containerView.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(containerView)
   }
+
+  convenience init(views : [UIView]) {
+    self.init()
+
+    // the NSStackView spec says so...
+    setTranslatesAutoresizingMaskIntoConstraints(false)
+    
+    for view in views { addView(view, inGravity: .Leading) }
+  }
   
 // MARK: General
   
@@ -39,17 +48,22 @@ class StackView : UIView {
   }
   
 // MARK: Views
-  
-  // TODO: make only privately mutable
-  private(set) var views : [UIView] = []
-
-  func addView(var view : UIView, inGravity gravity : StackViewGravityArea) {
+  func addView(view : UIView, inGravity gravity : StackViewGravityArea) {
     containerView.addView(view, inGravity: gravity)
   }
   
-  // TODO: insertView:atIndex:inGravity
-  // TODO: removeView:
-
+  func insertView(view : UIView, atIndex index: Int, inGravity gravity: StackViewGravityArea) {
+    containerView.insertView(view, atIndex: index, inGravity: gravity)
+  }
+  
+  func setViews(views : [UIView], inGravity gravity : StackViewGravityArea) {
+    containerView.setViews(views, inGravity: gravity)
+  }
+  
+  func removeView(view : UIView) {
+    containerView.removeView(view)
+  }
+  
 // TODO: Spacing
 
   func setCustomSpacing(spacing: Float, afterView view: UIView) {

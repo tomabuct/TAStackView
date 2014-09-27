@@ -27,24 +27,55 @@ class StackGravityAreaView : UIView {
     self.init(frame: CGRectNull)
   }
   
-// MARK: General
+// MARK: Views
   private var allViews : [UIView] = []
   
-  func addView(var view : UIView) {
-    allViews += [ view ];
+  func addView(view : UIView) {
+    insertView(view, atIndex: allViews.count)
+  }
+  
+  func insertView(view: UIView, atIndex index: Int) {
+    allViews.insert(view, atIndex: index)
     view.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(view);
     
-    let spacer = StackSpacerView(frame: CGRectZero)
+    let spacer = StackSpacerView()
+    spacers.insert(spacer, atIndex: index)
     spacer.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(spacer)
-    spacers += [ spacer ]
     
     setNeedsUpdateConstraints()
   }
   
+  func setViews(views : [UIView]) {
+    for view in allViews { removeView(view) }
+    
+    for view in views { addView(view) }
+  }
+  
+  func removeView(view : UIView) {
+    let index = indexOfView(view)
+    let spacer = spacers[index]
+    
+    view.removeFromSuperview()
+    spacer.removeFromSuperview()
+    
+    unsetCustomSpacingAfterView(view)
+    allViews.removeAtIndex(index)
+    spacers.removeAtIndex(index)
+  }
+  
+  private func indexOfView(view : UIView) -> Int {
+    for (i, v) in enumerate(allViews) {
+      if (unsafeAddressOf(view) == unsafeAddressOf(v)) { return i; }
+    }
+    fatalError("view doesn't exist in gravity area view")
+  }
+  
   // TODO: add support for non-binary visibility priorities
   var viewsInPlay : [UIView] { return allViews.filter({ self.visibilityPriorityForView($0) == .MustHold }) }
+  
+// MARK: General
   
   var alignment : NSLayoutAttribute = DefaultAlignment {
     didSet { setNeedsUpdateConstraints() }
@@ -69,6 +100,12 @@ class StackGravityAreaView : UIView {
   
   func setCustomSpacing(spacing: Float?, afterView view: UIView) {
     _customSpacingAfterView[unsafeAddressOf(view)] = spacing
+    
+    setNeedsUpdateConstraints()
+  }
+  
+  func unsetCustomSpacingAfterView(view: UIView) {
+    _customSpacingAfterView.removeValueForKey(unsafeAddressOf(view))
     
     setNeedsUpdateConstraints()
   }

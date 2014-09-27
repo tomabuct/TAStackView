@@ -103,7 +103,8 @@ class View: UIView {
     layoutIfNeeded();
 
     let view = tapGR.view
-    self.stackView.setVisibilityPriority(.NotVisible, forView: view!)
+//    self.stackView.setVisibilityPriority(.NotVisible, forView: view!)
+    self.stackView.removeView(view!)
 
     UIView.animateWithDuration(kDuration, animations: { self.layoutIfNeeded() })
   }
