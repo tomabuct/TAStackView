@@ -15,7 +15,7 @@ class StackGravityAreaView : UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-
+    
     // always used in manual Auto Layout context
     setTranslatesAutoresizingMaskIntoConstraints(false)
   }
@@ -37,7 +37,7 @@ class StackGravityAreaView : UIView {
     addSubview(view);
     
     let spacer = StackSpacerView()
-    spacers.insert(spacer, atIndex: index)
+    allSpacers.insert(spacer, atIndex: index)
     spacer.setTranslatesAutoresizingMaskIntoConstraints(false)
     addSubview(spacer)
     
@@ -52,14 +52,14 @@ class StackGravityAreaView : UIView {
   
   func removeView(view : UIView) {
     let index = indexOfView(view)
-    let spacer = spacers[index]
+    let spacer = allSpacers[index]
     
     view.removeFromSuperview()
     spacer.removeFromSuperview()
     
-    unsetCustomSpacingAfterView(view)
+    setCustomSpacing(nil, afterView: view)
     allViews.removeAtIndex(index)
-    spacers.removeAtIndex(index)
+    allSpacers.removeAtIndex(index)
   }
   
   private func indexOfView(view : UIView) -> Int {
@@ -86,7 +86,7 @@ class StackGravityAreaView : UIView {
   
   var orientation : TAUserInterfaceLayoutOrientation = DefaultOrientation {
     didSet {
-      spacers.map({$0.orientation = self.orientation})
+      allSpacers.map({$0.orientation = self.orientation})
       
       setNeedsUpdateConstraints()
     }
@@ -97,9 +97,24 @@ class StackGravityAreaView : UIView {
 // MARK: Spacing
   private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
 
-  private(set) var spacers : [StackSpacerView] = []
+  private var allSpacers : [StackSpacerView] = []
+
+  var attachedSpacers : [StackSpacerView] {
+    // TODO: this was painful to write... cleanup
+    var spacersForAttachedViews = filter(enumerate(allSpacers)) { (i, spacer) in self.isViewAttached(self.allViews[i]) }
+    
+    // haskell's init :'(
+    if !spacersForAttachedViews.isEmpty { spacersForAttachedViews.removeLast() }
+    
+    // ...and unzip
+    return spacersForAttachedViews.map({ $0.element })
+  }
   
   var spacingAfter : Float { assert(!attachedViews.isEmpty); return spacingAfterView(attachedViews.last!) }
+  
+  private func spacingAfterView(view : UIView) -> Float {
+    return hasEqualSpacing ? spacing : (customSpacingAfterView(view) ?? spacing)
+  }
   
   func setCustomSpacing(spacing: Float?, afterView view: UIView) {
     _customSpacingAfterView[unsafeAddressOf(view)] = spacing
@@ -107,18 +122,8 @@ class StackGravityAreaView : UIView {
     setNeedsUpdateConstraints()
   }
   
-  func unsetCustomSpacingAfterView(view: UIView) {
-    _customSpacingAfterView.removeValueForKey(unsafeAddressOf(view))
-    
-    setNeedsUpdateConstraints()
-  }
-  
   func customSpacingAfterView(view : UIView) -> Float? {
     return _customSpacingAfterView[unsafeAddressOf(view)]
-  }
-  
-  private func spacingAfterView(view : UIView) -> Float {
-    return customSpacingAfterView(view) ?? spacing
   }
 
   var spacing : Float = DefaultSpacing {
@@ -187,7 +192,7 @@ class StackGravityAreaView : UIView {
 
       var cs : [NSLayoutConstraint] = []
       for (i, view) in enumerate(attachedViews) {
-        var map = [ "view" : view, "spacer" : spacers[i] ]
+        var map = [ "view" : view, "spacer" : allSpacers[i] ]
         var vfls : [String] = []
 
         // VFL for axis:
@@ -233,7 +238,7 @@ class StackGravityAreaView : UIView {
       
       for i in 0 ..< allViews.count - 1 {
         let view = allViews[i]
-        let spacer = spacers[i]
+        let spacer = allSpacers[i]
         
         let hP = huggingPriorityForAxis(orientation.toAxis())
         

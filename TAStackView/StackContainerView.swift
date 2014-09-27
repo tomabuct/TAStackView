@@ -241,44 +241,18 @@ class StackContainerView : UIView {
         vfls = [ "\(char):|[spacer1][center][spacer2]|" ]
       } else if (!head.shouldShow && !center.shouldShow && tail.shouldShow) {  // 001
         vfls = [ "\(char):|[spacer1][tail]|" ]
-      } else if (head.shouldShow && center.shouldShow && tail.shouldShow) { // 000
+      } else if (!head.shouldShow && !center.shouldShow && !tail.shouldShow) { // 000
         // TODO
       }
       
       return NSLayoutConstraint.constraintsWithVisualFormats(vfls, options: NSLayoutFormatOptions(0), metrics: [:], views: views)
     }
     
-    func _updateInterGravityAreaSpacing() {
-      let hP = huggingPriorityForAxis(axis)
-
-      spacer1.spacing = head.shouldShow && (center.shouldShow || tail.shouldShow) ? head.spacingAfter : 0
-      spacer1.spacingPriority = hP
-      
-      spacer2.spacing = center.shouldShow && tail.shouldShow ? center.spacingAfter : 0
-      spacer2.spacingPriority = hP
-    }
+    // an inter-gravity spacer is sandwiched if there are gravity areas before *and* after it
+    // yes, "*inter*-gravity spacer" is a misnomer for non-sandwiched spacers
+    var isSpacer1Sandwiched : Bool { return head.shouldShow && (center.shouldShow || tail.shouldShow) }
+    var isSpacer2Sandwiched : Bool { return center.shouldShow && tail.shouldShow  }
     
-    func _centerGravityAreaCenteringConstraint() -> NSLayoutConstraint {
-      let centeringAttribute : NSLayoutAttribute = orientation == .Horizontal ? .CenterX : .CenterY
-      
-      let centeringConstraint = NSLayoutConstraint(
-        item: center, attribute: centeringAttribute,
-        relatedBy: .Equal,
-        toItem: self, attribute: centeringAttribute,
-        multiplier: 1, constant: 0)
-      
-      centeringConstraint.priority = CenterGravityAreaCenteringPriority
-
-      return centeringConstraint;
-    }
-    
-    func _constraintsForOtherAxis() -> [NSLayoutConstraint] {
-      let otherChar = orientation.other().toCharacter()
-      let vfls = [ "\(otherChar):|[head]|", "\(otherChar):|[center]|", "\(otherChar):|[tail]|" ]
-      return NSLayoutConstraint.constraintsWithVisualFormats(vfls,
-        options: NSLayoutFormatOptions(0), metrics: [:], views: views)
-    }
-
     func _constraintsForEqualSpacing() -> [NSLayoutConstraint] {
       func _constraintEquating(attribute: NSLayoutAttribute, ofView view1: UIView, andView view2: UIView) -> NSLayoutConstraint {
         let c = NSLayoutConstraint(item: view1, attribute: attribute,
@@ -289,21 +263,51 @@ class StackContainerView : UIView {
         return c
       }
       
-      let attribute : NSLayoutAttribute = orientation == .Horizontal ? .Width : .Height
+      // gather all relevant spacers
+      var spacers = gravityAreaViewsArray.reduce([], combine: { $0 + $1.attachedSpacers })
+      if (isSpacer1Sandwiched) { spacers.append(spacer1) }
+      if (isSpacer2Sandwiched) { spacers.append(spacer2) }
       
-      var cs : [NSLayoutConstraint] = []
-
-      // spacer2 equals spacer1
-      cs.append(_constraintEquating(attribute, ofView: spacer2, andView: spacer1))
-      
-      // each spacer in each gravity area equals spacer1
-      for gravityAreaView in gravityAreaViewsArray {
-        for spacer in gravityAreaView.spacers {
-          cs.append(_constraintEquating(attribute, ofView: spacer, andView: spacer1))
-        }
+      // if there are any, equate their appropriate metric
+      if let firstSpacer = spacers.first {
+        let attribute : NSLayoutAttribute = orientation == .Horizontal ? .Width : .Height
+        let cs = spacers.map({ _constraintEquating(attribute, ofView: $0, andView: firstSpacer) })
+        return cs
+      } else {
+        return []
       }
+    }
+    
+    func _updateInterGravityAreaSpacing() {
+      let hP = huggingPriorityForAxis(axis)
+
+      // as per NSStackView behavior, we want non-sandwiched inter-gravity spacers to collapse to 0
+      // in hasEqualSpacing mode, they're required to collapse to 0 (this way the equal spacing distributes between sandwiched spacers)
       
-      return cs
+      spacer1.spacing = isSpacer1Sandwiched ? head.spacingAfter : 0
+      spacer1.spacingPriority = hasEqualSpacing && !isSpacer1Sandwiched ? LayoutPriorityDefaultRequired : hP
+
+      spacer2.spacing = isSpacer2Sandwiched ? center.spacingAfter : 0
+      spacer2.spacingPriority = hasEqualSpacing && !isSpacer2Sandwiched ? LayoutPriorityDefaultRequired : hP
+    }
+    
+    func _centerGravityAreaCenteringConstraint() -> NSLayoutConstraint {
+      let centeringAttribute : NSLayoutAttribute = orientation == .Horizontal ? .CenterX : .CenterY
+      
+      let centeringConstraint = NSLayoutConstraint(
+        item: center, attribute: centeringAttribute,
+        relatedBy: .Equal,
+        toItem: self, attribute: centeringAttribute,
+        multiplier: 1, constant: 0)
+      centeringConstraint.priority = CenterGravityAreaCenteringPriority
+      return centeringConstraint;
+    }
+    
+    func _constraintsForOtherAxis() -> [NSLayoutConstraint] {
+      let otherChar = orientation.other().toCharacter()
+      let vfls = [ "\(otherChar):|[head]|", "\(otherChar):|[center]|", "\(otherChar):|[tail]|" ]
+      return NSLayoutConstraint.constraintsWithVisualFormats(vfls,
+        options: NSLayoutFormatOptions(0), metrics: [:], views: views)
     }
 
     removeConstraints(constraints())

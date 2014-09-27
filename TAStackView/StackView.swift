@@ -134,7 +134,7 @@ import UIKit
       "t": edgeInsets.top,
       
       "b": edgeInsets.bottom,
-      "CRp_v": clippingResistancePriorityForAxis(UILayoutConstraintAxis.Vertical),
+      "CRp_v": clippingResistancePriorityForAxis(.Vertical),
       
       "r": edgeInsets.right,
       "CRp_h": clippingResistancePriorityForAxis(.Horizontal),
