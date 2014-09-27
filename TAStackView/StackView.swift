@@ -73,7 +73,7 @@ import UIKit
     containerView.removeView(view)
   }
   
-// TODO: Spacing
+// MARK: Spacing
 
   public func setCustomSpacing(spacing: Float, afterView view: UIView) {
     containerView.setCustomSpacing(spacing == TAStackViewSpacingUseDefault ? nil : spacing, afterView: view)
