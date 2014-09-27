@@ -40,7 +40,7 @@ class StackSpacerView : UIView {
     didSet { setNeedsUpdateConstraints() }
   }
   
-  var spacingPriority : UILayoutPriority = DefaultSpacingPriority {
+  var spacingPriority : UILayoutPriority = LayoutPriorityDefaultLow {
     didSet { setNeedsUpdateConstraints() }
   }
   

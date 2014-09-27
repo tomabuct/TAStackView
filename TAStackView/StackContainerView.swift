@@ -195,7 +195,11 @@ class StackContainerView : UIView {
   }
   
   var hasEqualSpacing : Bool = false {
-    didSet { setNeedsUpdateConstraints() }
+    didSet {
+      for view in gravityAreaViewsArray { view.hasEqualSpacing = hasEqualSpacing }
+
+      setNeedsUpdateConstraints()
+    }
   }
 
 // MARK: Layout
@@ -277,10 +281,12 @@ class StackContainerView : UIView {
 
     func _constraintsForEqualSpacing() -> [NSLayoutConstraint] {
       func _constraintEquating(attribute: NSLayoutAttribute, ofView view1: UIView, andView view2: UIView) -> NSLayoutConstraint {
-        return NSLayoutConstraint(item: view1, attribute: attribute,
+        let c = NSLayoutConstraint(item: view1, attribute: attribute,
           relatedBy: .Equal,
           toItem: view2, attribute: attribute,
           multiplier: 1.0, constant: 0.0)
+        c.priority = EqualSpacingPriority
+        return c
       }
       
       let attribute : NSLayoutAttribute = orientation == .Horizontal ? .Width : .Height

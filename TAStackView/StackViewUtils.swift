@@ -53,7 +53,7 @@ let DefaultAlignment : NSLayoutAttribute = .CenterY
 let DefaultOrientation : TAUserInterfaceLayoutOrientation = .Horizontal
 let DefaultClippingResistancePriority : UILayoutPriority = LayoutPriorityDefaultRequired
 let DefaultHuggingPriority : UILayoutPriority = LayoutPriorityDefaultLow
-let DefaultSpacingPriority : UILayoutPriority = DefaultHuggingPriority
+let EqualSpacingPriority : UILayoutPriority = LayoutPriorityDefaultLow
 let CenterGravityAreaCenteringPriority : UILayoutPriority = DefaultHuggingPriority
 
 extension NSLayoutConstraint {
