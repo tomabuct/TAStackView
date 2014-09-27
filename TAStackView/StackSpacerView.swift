@@ -28,19 +28,6 @@ class StackSpacerView : UIView {
     
     // always used in manual Auto Layout context
     setTranslatesAutoresizingMaskIntoConstraints(false)
-
-    // layout
-    let char = orientation.toCharacter()
-    let metrics = [ "spacing":  spacing, "sP": spacingPriority ]._bridgeToObjectiveC()
-    let views = [ "self": self ]._bridgeToObjectiveC()
-
-    huggingConstraint = (NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(spacing@sP)]",
-      options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint]).first!
-    spacingConstraint = (NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(>=spacing)]",
-      options: NSLayoutFormatOptions(0), metrics: metrics, views: views) as [NSLayoutConstraint]).first!
-    
-    addConstraint(huggingConstraint)
-    addConstraint(spacingConstraint)
   }
   
 // MARK: Configuration
@@ -57,13 +44,19 @@ class StackSpacerView : UIView {
     didSet { setNeedsUpdateConstraints() }
   }
   
-// MARK: Update layout
+// MARK: Layout
   
   override func updateConstraints() {
-    huggingConstraint.constant = CGFloat(spacing)
-    huggingConstraint.priority = spacingPriority
+    removeConstraints(constraints())
     
-    spacingConstraint.constant = CGFloat(spacing)
+    let char = orientation.toCharacter()
+    let metrics = [ "spacing":  spacing, "sP": spacingPriority ]._bridgeToObjectiveC()
+    let views = [ "self": self ]._bridgeToObjectiveC()
+    
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(>=spacing)]",
+      options: NSLayoutFormatOptions(0), metrics: metrics, views: views))
+    addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("\(char):[self(spacing@sP)]",
+      options: NSLayoutFormatOptions(0), metrics: metrics, views: views))
     
     super.updateConstraints()
   }

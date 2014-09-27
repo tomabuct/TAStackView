@@ -10,11 +10,11 @@
 		C2FEA2AB19D67FE600452974 /* TAStackView.h in Headers */ = {isa = PBXBuildFile; fileRef = C2FEA2AA19D67FE600452974 /* TAStackView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2FEA2B119D67FE600452974 /* TAStackView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2FEA2A519D67FE600452974 /* TAStackView.framework */; };
 		C2FEA2B819D67FE600452974 /* TAStackViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2B719D67FE600452974 /* TAStackViewTests.swift */; };
-		C2FEA2C619D67FF900452974 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C119D67FF900452974 /* StackContainerView.swift */; };
-		C2FEA2C719D67FF900452974 /* StackGravityAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */; };
-		C2FEA2C819D67FF900452974 /* StackSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C319D67FF900452974 /* StackSpacerView.swift */; };
-		C2FEA2C919D67FF900452974 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C419D67FF900452974 /* StackView.swift */; };
-		C2FEA2CA19D67FF900452974 /* StackViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2C519D67FF900452974 /* StackViewUtils.swift */; };
+		C2FEA2D819D689EB00452974 /* StackContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2D319D689EB00452974 /* StackContainerView.swift */; };
+		C2FEA2D919D689EB00452974 /* StackGravityAreaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2D419D689EB00452974 /* StackGravityAreaView.swift */; };
+		C2FEA2DA19D689EB00452974 /* StackSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2D519D689EB00452974 /* StackSpacerView.swift */; };
+		C2FEA2DB19D689EB00452974 /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2D619D689EB00452974 /* StackView.swift */; };
+		C2FEA2DC19D689EB00452974 /* StackViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FEA2D719D689EB00452974 /* StackViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,11 +34,11 @@
 		C2FEA2B019D67FE600452974 /* TAStackViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TAStackViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2FEA2B619D67FE600452974 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2FEA2B719D67FE600452974 /* TAStackViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TAStackViewTests.swift; sourceTree = "<group>"; };
-		C2FEA2C119D67FF900452974 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackContainerView.swift; path = ../../TAStackViewOldApp/TAStackView/StackContainerView.swift; sourceTree = "<group>"; };
-		C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackGravityAreaView.swift; path = ../../TAStackViewOldApp/TAStackView/StackGravityAreaView.swift; sourceTree = "<group>"; };
-		C2FEA2C319D67FF900452974 /* StackSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackSpacerView.swift; path = ../../TAStackViewOldApp/TAStackView/StackSpacerView.swift; sourceTree = "<group>"; };
-		C2FEA2C419D67FF900452974 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackView.swift; path = ../../TAStackViewOldApp/TAStackView/StackView.swift; sourceTree = "<group>"; };
-		C2FEA2C519D67FF900452974 /* StackViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StackViewUtils.swift; path = ../../TAStackViewOldApp/TAStackView/StackViewUtils.swift; sourceTree = "<group>"; };
+		C2FEA2D319D689EB00452974 /* StackContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackContainerView.swift; sourceTree = "<group>"; };
+		C2FEA2D419D689EB00452974 /* StackGravityAreaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackGravityAreaView.swift; sourceTree = "<group>"; };
+		C2FEA2D519D689EB00452974 /* StackSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackSpacerView.swift; sourceTree = "<group>"; };
+		C2FEA2D619D689EB00452974 /* StackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackView.swift; sourceTree = "<group>"; };
+		C2FEA2D719D689EB00452974 /* StackViewUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StackViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,11 +81,11 @@
 		C2FEA2A719D67FE600452974 /* TAStackView */ = {
 			isa = PBXGroup;
 			children = (
-				C2FEA2C419D67FF900452974 /* StackView.swift */,
-				C2FEA2C119D67FF900452974 /* StackContainerView.swift */,
-				C2FEA2C219D67FF900452974 /* StackGravityAreaView.swift */,
-				C2FEA2C319D67FF900452974 /* StackSpacerView.swift */,
-				C2FEA2C519D67FF900452974 /* StackViewUtils.swift */,
+				C2FEA2D619D689EB00452974 /* StackView.swift */,
+				C2FEA2D719D689EB00452974 /* StackViewUtils.swift */,
+				C2FEA2D319D689EB00452974 /* StackContainerView.swift */,
+				C2FEA2D419D689EB00452974 /* StackGravityAreaView.swift */,
+				C2FEA2D519D689EB00452974 /* StackSpacerView.swift */,
 				C2FEA2AA19D67FE600452974 /* TAStackView.h */,
 				C2FEA2A819D67FE600452974 /* Supporting Files */,
 			);
@@ -224,11 +224,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2FEA2C619D67FF900452974 /* StackContainerView.swift in Sources */,
-				C2FEA2C819D67FF900452974 /* StackSpacerView.swift in Sources */,
-				C2FEA2C719D67FF900452974 /* StackGravityAreaView.swift in Sources */,
-				C2FEA2CA19D67FF900452974 /* StackViewUtils.swift in Sources */,
-				C2FEA2C919D67FF900452974 /* StackView.swift in Sources */,
+				C2FEA2D919D689EB00452974 /* StackGravityAreaView.swift in Sources */,
+				C2FEA2DC19D689EB00452974 /* StackViewUtils.swift in Sources */,
+				C2FEA2DB19D689EB00452974 /* StackView.swift in Sources */,
+				C2FEA2D819D689EB00452974 /* StackContainerView.swift in Sources */,
+				C2FEA2DA19D689EB00452974 /* StackSpacerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +417,7 @@
 				C2FEA2BD19D67FE600452974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C2FEA2BE19D67FE600452974 /* Build configuration list for PBXNativeTarget "TAStackViewTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +426,7 @@
 				C2FEA2C019D67FE600452974 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

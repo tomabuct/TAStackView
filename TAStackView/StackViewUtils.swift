@@ -8,10 +8,41 @@
 
 import UIKit
 
+// MARK: Public
+
 public enum StackViewVisibilityPriority : Float {
   case MustHold = 1000
   case NotVisible = 0
 }
+
+public enum TAUserInterfaceLayoutOrientation {
+  case Horizontal
+  case Vertical
+  
+  func toCharacter() -> Character {
+    return self == .Horizontal ? "H" : "V"
+  }
+  
+  func other() -> TAUserInterfaceLayoutOrientation {
+    return self == .Horizontal ? .Vertical : .Horizontal;
+  }
+  
+  func toAxis() -> UILayoutConstraintAxis {
+    return self == .Horizontal ? .Horizontal : .Vertical;
+  }
+}
+
+public enum StackViewGravityArea: Int {
+  case Top
+  case Leading
+  case Center
+  case Bottom
+  case Trailing
+}
+
+public let TAStackViewSpacingUseDefault = FLT_MAX
+
+// MARK: Internal
 
 let LayoutPriorityDefaultLow : UILayoutPriority = 250
 let LayoutPriorityDefaultHigh : UILayoutPriority  = 750
@@ -42,30 +73,3 @@ extension NSLayoutConstraint {
     return cs
   }
 }
-
-public enum TAUserInterfaceLayoutOrientation {
-  case Horizontal
-  case Vertical
-
-  func toCharacter() -> Character {
-    return self == .Horizontal ? "H" : "V"
-  }
-
-  func other() -> TAUserInterfaceLayoutOrientation {
-    return self == .Horizontal ? .Vertical : .Horizontal;
-  }
-
-  func toAxis() -> UILayoutConstraintAxis {
-    return self == .Horizontal ? .Horizontal : .Vertical;
-  }
-}
-
-public enum StackViewGravityArea: Int {
-  case Top
-  case Leading
-  case Center
-  case Bottom
-  case Trailing
-}
-
-let TAStackViewSpacingUseDefault = FLT_MAX

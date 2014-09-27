@@ -123,16 +123,17 @@ class StackContainerView : UIView {
   private var horizontalHuggingPriority = DefaultHuggingPriority
   private var verticalHuggingPriority = DefaultHuggingPriority
 
-  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
-    return axis == .Horizontal ? horizontalClippingResistancePriority : verticalClippingResistancePriority
-  }
-
+  
   func setClippingResistancePriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
     if (axis == .Horizontal) {
       horizontalClippingResistancePriority = priority
     } else {
       verticalClippingResistancePriority = priority
     }
+  }
+  
+  func clippingResistancePriorityForAxis(axis : UILayoutConstraintAxis) -> UILayoutPriority {
+    return axis == .Horizontal ? horizontalClippingResistancePriority : verticalClippingResistancePriority
   }
   
   func setHuggingPriority(priority : UILayoutPriority, forAxis axis : UILayoutConstraintAxis) {
@@ -266,12 +267,14 @@ class StackContainerView : UIView {
           multiplier: 1.0, constant: 0.0)
       }
       
-      var cs : [NSLayoutConstraint] = []
-      
       let attribute : NSLayoutAttribute = orientation == .Horizontal ? .Width : .Height
       
-      // everyone is going to equal spacer1!
+      var cs : [NSLayoutConstraint] = []
+
+      // spacer2 equals spacer1
       cs.append(_constraintEquating(attribute, ofView: spacer2, andView: spacer1))
+      
+      // each spacer in each gravity area equals spacer1
       for gravityAreaView in gravityAreaViewsArray {
         for spacer in gravityAreaView.spacers {
           cs.append(_constraintEquating(attribute, ofView: spacer, andView: spacer1))

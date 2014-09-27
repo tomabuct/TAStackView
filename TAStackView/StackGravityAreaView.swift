@@ -15,9 +15,6 @@ class StackGravityAreaView : UIView {
   
   override init(frame: CGRect) {
     super.init(frame: frame)
-    
-    layer.borderColor = UIColor.redColor().CGColor
-    layer.borderWidth = 0.5
 
     // always used in manual Auto Layout context
     setTranslatesAutoresizingMaskIntoConstraints(false)
