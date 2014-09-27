@@ -69,11 +69,11 @@ class StackGravityAreaView : UIView {
     fatalError("view doesn't exist in gravity area view")
   }
   
+  // TODO: add support for non-binary visibility priorities
   private func isViewAttached(view : UIView) -> Bool {
     return self.visibilityPriorityForView(view) == .MustHold
   }
   
-  // TODO: add support for non-binary visibility priorities
   var views : [UIView] { return allViews }
   var attachedViews : [UIView] { return allViews.filter(isViewAttached) }
   var detachedViews : [UIView] { return allViews.filter({ !self.isViewAttached($0) }) }
