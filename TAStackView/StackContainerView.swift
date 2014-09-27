@@ -45,6 +45,18 @@ class StackContainerView : UIView {
   
 // MARK: Views
   
+  var views : [UIView] {
+    return gravityAreaViews.head.views + gravityAreaViews.center.views + gravityAreaViews.tail.views
+  }
+
+  var detachedViews : [UIView] {
+    return gravityAreaViews.head.detachedViews + gravityAreaViews.center.detachedViews + gravityAreaViews.tail.detachedViews
+  }
+
+  func viewsInGravity(gravity : StackViewGravityArea) -> [UIView] {
+    return gravityAreaViewForGravity(gravity).views
+  }
+  
   func addView(var view : UIView, inGravity gravity: StackViewGravityArea) {
     setGravityArea(gravity, containingView: view)
     gravityAreaViewForGravity(gravity).addView(view)

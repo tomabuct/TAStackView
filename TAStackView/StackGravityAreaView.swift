@@ -69,8 +69,14 @@ class StackGravityAreaView : UIView {
     fatalError("view doesn't exist in gravity area view")
   }
   
+  private func isViewAttached(view : UIView) -> Bool {
+    return self.visibilityPriorityForView(view) == .MustHold
+  }
+  
   // TODO: add support for non-binary visibility priorities
-  var viewsInPlay : [UIView] { return allViews.filter({ self.visibilityPriorityForView($0) == .MustHold }) }
+  var views : [UIView] { return allViews }
+  var attachedViews : [UIView] { return allViews.filter(isViewAttached) }
+  var detachedViews : [UIView] { return allViews.filter({ !self.isViewAttached($0) }) }
   
 // MARK: General
   
@@ -86,14 +92,14 @@ class StackGravityAreaView : UIView {
     }
   }
   
-  var shouldShow : Bool { return !viewsInPlay.isEmpty }
+  var shouldShow : Bool { return !attachedViews.isEmpty }
   
 // MARK: Spacing
   private var _customSpacingAfterView = Dictionary<UnsafePointer<Void>, Float>()
 
   private(set) var spacers : [StackSpacerView] = []
   
-  var spacingAfter : Float { assert(!viewsInPlay.isEmpty); return spacingAfterView(viewsInPlay.last!) }
+  var spacingAfter : Float { assert(!attachedViews.isEmpty); return spacingAfterView(attachedViews.last!) }
   
   func setCustomSpacing(spacing: Float?, afterView view: UIView) {
     _customSpacingAfterView[unsafeAddressOf(view)] = spacing
@@ -170,7 +176,7 @@ class StackGravityAreaView : UIView {
 // MARK: Layout
 
   override func updateConstraints() {
-    hidden = viewsInPlay.isEmpty
+    hidden = attachedViews.isEmpty
 
     func _mainConstraints() -> [NSLayoutConstraint] {
       let otherAxis = orientation.other().toAxis();
@@ -180,7 +186,7 @@ class StackGravityAreaView : UIView {
       let otherChar = orientation.other().toCharacter()
 
       var cs : [NSLayoutConstraint] = []
-      for (i, view) in enumerate(viewsInPlay) {
+      for (i, view) in enumerate(attachedViews) {
         var map = [ "view" : view, "spacer" : spacers[i] ]
         var vfls : [String] = []
 
@@ -193,10 +199,10 @@ class StackGravityAreaView : UIView {
           vfls += [ "\(char):|[view]" ];
         }
 
-        if (i == viewsInPlay.count - 1) {
+        if (i == attachedViews.count - 1) {
           vfls += [ "\(char):[view]|" ]
         } else {
-          map["nextView"] = viewsInPlay[i + 1];
+          map["nextView"] = attachedViews[i + 1];
           vfls += [ "\(char):[view][spacer][nextView]" ];
         }
 
@@ -212,7 +218,7 @@ class StackGravityAreaView : UIView {
     }
 
     func _alignmentConstraints() -> [NSLayoutConstraint] {
-      return viewsInPlay.map({ (view : UIView) -> NSLayoutConstraint in
+      return attachedViews.map({ (view : UIView) -> NSLayoutConstraint in
         NSLayoutConstraint(
           item: self, attribute: self.alignment,
           relatedBy: .Equal,

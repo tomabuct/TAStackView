@@ -48,6 +48,15 @@ import UIKit
   }
   
 // MARK: Views
+  
+  public var views : [UIView] { return containerView.views }
+  
+  public var detachedViews : [UIView] { return containerView.detachedViews }
+  
+  public func viewsInGravity(gravity : StackViewGravityArea) -> [UIView] {
+    return containerView.viewsInGravity(gravity)
+  }
+
   public func addView(view : UIView, inGravity gravity : StackViewGravityArea) {
     containerView.addView(view, inGravity: gravity)
   }
