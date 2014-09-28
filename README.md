@@ -28,14 +28,10 @@ TAStackView: NSStackView for iOS
 3. In Xcode, navigate to the target configuration window by clicking on the blue project icon, and selecting the application target under the "Targets" heading in the sidebar.
 4. In the tab bar at the top of that window, open the "Build Phases" panel.
 5. Expand the "Link Binary with Libraries" group, and add `TAStackView.framework`.
-6. 
 
 ### Usage
 
 (see [`NSStackView`](https://developer.apple.com/library/mac/documentation/AppKit/Reference/NSStackView_Class/Chapters/Reference.html) documentation)
-
-
-* * *
 
 
 ### Creator
