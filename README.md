@@ -1,5 +1,7 @@
-TAStackView: NSStackView for iOS
-================================
+TAStackView
+===========
+
+### NSStackView for iOS
 
 `TAStackView` is an almost[1] fully API-compatible [`NSStackView`](https://developer.apple.com/library/mac/documentation/AppKit/Reference/NSStackView_Class/Chapters/Reference.html) port for iOS (think: `UIStackView`!) that's written in Swift.
 
@@ -36,7 +38,7 @@ TAStackView: NSStackView for iOS
 
 ### Creator
 
-- [Tom Abraham](http://github.com/tomabuct) ([@tomabuct](https://twitter.com/tomabuct))
+[Tom Abraham](http://github.com/tomabuct) ([@tomabuct](https://twitter.com/tomabuct))
 
 ### License
 
