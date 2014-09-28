@@ -38,6 +38,6 @@ TAStackView: NSStackView for iOS
 
 - [Tom Abraham](http://github.com/tomabuct) ([@tomabuct](https://twitter.com/tomabuct))
 
-## License
+### License
 
 TAStackView is released under the MIT license. See LICENSE.md for details.
