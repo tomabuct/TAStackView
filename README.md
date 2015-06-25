@@ -1,7 +1,7 @@
 TAStackView
 ===========
 
-### Deprecated
+### _Deprecated_
 
 _This was written before [`UIStackView`](https://developer.apple.com/library/prerelease/ios/documentation/UIKit/Reference/UIStackView_Class_Reference/) was introduced in iOS 9. Please use it, or [`OAStackView`](https://github.com/oarrabi/OAStackView) if you need to support iOS 8._
 
